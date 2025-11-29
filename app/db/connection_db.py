@@ -1,7 +1,11 @@
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
 from typing import Optional
 from motor.motor_asyncio import AsyncIOMotorClient
 
-MONGODB_URI = "mongodb+srv://doifaplicacao:65RfPHZHWrZEtf9n@cluster0.lxzu3pv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+MONGODB_URI = os.getenv("MONGODB_URI")
 
 class Connection:
     def __init__(self, uri: str):
