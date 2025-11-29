@@ -1,10 +1,9 @@
 # app/db/schema.py
 from datetime import datetime, timedelta
-from dateutil.relativedelta import relativedelta
 from bson import SON
+from dateutil.relativedelta import relativedelta
 from app.db.connection_db import Connection
 import asyncio
-from app.models.publication import Publication
 import json 
 from motor.motor_asyncio import AsyncIOMotorDatabase, AsyncIOMotorCollection
 
@@ -586,9 +585,6 @@ def generate_days_dic(todays_last=90):
     
     
 
-
-
-#[{'date': '2025-06-30', 'nomeacoes': 1, 'exoneracoes': 0}, {'date': '2025-08-09', 'nomeacoes': 1, 'exoneracoes': 0}]
 
 
 
