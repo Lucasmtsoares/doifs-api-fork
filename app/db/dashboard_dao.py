@@ -1,4 +1,7 @@
-# app/db/schema.py
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
 from datetime import datetime, timedelta
 from bson import SON
 from dateutil.relativedelta import relativedelta
@@ -7,14 +10,10 @@ import asyncio
 import json 
 from motor.motor_asyncio import AsyncIOMotorDatabase, AsyncIOMotorCollection
 
-DB_NAME = "publications_dou"
-COLLETION_NAME = "IFAL"
+COLLETION_NAME = os.getenv("COLLETION_NAME")
 
 class DashboardDAO:
     def __init__(self, db: AsyncIOMotorDatabase):
-        #connection = Connection()
-        #self.client = connection.connection()
-        #self.db = self.client['publications_dou']
         self.colletion: AsyncIOMotorCollection = db[COLLETION_NAME]
 
     async def get_type_counts(self):

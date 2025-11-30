@@ -1,7 +1,8 @@
 from app.db.dashboard_dao import DashboardDAO
 
 
-class PublicationController:
+
+class SummaryController:
     def __init__(self, dashboard_dao: DashboardDAO):
         self.dash = dashboard_dao
     

@@ -1,21 +1,27 @@
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException, Query
 from typing import AsyncGenerator, Optional
 from app.models.publication import Publication
 from app.db.publication_dao import PublicationDAO
-from app.db.dashboard_dao import DashboardDAO, DB_NAME
+from app.db.dashboard_dao import DashboardDAO
 
 #Importações de config do database
 from app.db.connection_db import mongo_client_manager
 
 from api.controllers.controller import (
-    PublicationController,
+    SummaryController,
     PeriodicController,
     PersonnelController,
     InstituteController,
     RegionController,
     StatesController
 )
+
+DB_NAME = os.getenv("DB_NAME")
 
 #Função declarativa de tempo de vida
 @asynccontextmanager
@@ -31,7 +37,7 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
         dashboard_dao = DashboardDAO(db)
         
         # 2. Inicializa TODOS os Controllers, INJETANDO o DAO
-        app.state.publication_controller = PublicationController(dashboard_dao)
+        app.state.publication_controller = SummaryController(dashboard_dao)
         app.state.periodic_controller = PeriodicController(dashboard_dao)
         app.state.personnel_controller = PersonnelController(dashboard_dao)
         app.state.institute_controller = InstituteController(dashboard_dao)
