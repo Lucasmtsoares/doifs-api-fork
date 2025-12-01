@@ -7,10 +7,11 @@ class PublicationController:
         
     async def get_publication_controller(self, publication):
         #retorna publications
-        publications = await self.publication.get_publication(publication=publication)
-        
+        publications, count = await self.publication.get_publication(publication)
+        print("Controller pubs >>")
         return {
-            "publications": publications
+            "publications": publications,
+            "count": count
         }
 
 class SummaryController:
