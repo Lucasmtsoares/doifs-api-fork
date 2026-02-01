@@ -179,7 +179,7 @@ class DashboardDAO:
                 "$project": {
                     "_id": 0,
                     "type": 1,
-                    "institute": 1,
+                    "acronym": 1,
                     "responsible": 1
                 }
             },
@@ -187,7 +187,7 @@ class DashboardDAO:
             {
                 "$group": {
                     "_id": "$responsible",
-                    "institute": { "$first": "$institute" },
+                    "acronym": { "$first": "$acronym" },
                     "nomeacoes": {
                     "$sum": {
                     "$cond": [{ "$eq": ["$type", "Nomeação"] }, 1, 0]
@@ -210,8 +210,8 @@ class DashboardDAO:
                 "$project": {
                     "_id": 0,
                     "responsible": "$_id",
-                    "institute": "$institute",
-                    "responsible_institute": { "$concat": [ "$_id", " - ", "$institute" ] },
+                    "acronym": "$acronym",
+                    "responsible_institute": { "$concat": [ "$_id", " - ", "$acronym" ] },
                     "total_acts": "$total",
                     "nomeacoes": "$nomeacoes",
                     "exoneracoes": "$exoneracoes",
@@ -254,7 +254,7 @@ class DashboardDAO:
             {
                 # Opcional: Filtra por um intervalo de anos se a coleção for muito grande
                 "$match": {
-                "institute": { "$in": ["IFAC", "IFAL", "IFAP", "IFAM", "IFBA", "IF Baiano", "IFCE", "IFB",
+                "acronym": { "$in": ["IFAC", "IFAL", "IFAP", "IFAM", "IFBA", "IF Baiano", "IFCE", "IFB",
                                       "IFG", "IF Goiano", "IFES", "IFMA", "IFMG", "IFNMG", "IF Sudeste MG",
                                        "IFSULDEMINAS", "IFTM", "IFMT", "IFMS", "IFPA", "IFPB", "IFPE",
                                        "IF Sertão PE", "IFPI", "IFPR", "IFRJ", "IFF", "IFRN", "IFRS",
@@ -268,7 +268,7 @@ class DashboardDAO:
                 "$group": {
                 #Chave de Agrupamento: Instituto, Ano e Mês (numérico para ordenação)
                 "_id": {
-                    "institute": "$institute",
+                    "acronym": "$acronym",
                     "year": "$year",
                     "month": "$month",
                     "month_num": "$month_num"
@@ -293,7 +293,7 @@ class DashboardDAO:
                 # Estágio 3: Ordenação Final (Obrigatório para a série temporal)
             {
                 "$sort": {
-                "_id.institute": 1,
+                "_id.acronym": 1,
                 "_id.year": 1,
                 "_id.month_num": 1 # Garante a ordem Jan, Fev, Mar...
                 }
@@ -303,7 +303,7 @@ class DashboardDAO:
             {
                 "$project": {
                 "_id": 0,
-                "institute": "$_id.institute",
+                "acronym": "$_id.acronym",
                 "year": "$_id.year",
                 "month": "$_id.month",
                 "nomeacoes": "$nomeacoes",
@@ -319,7 +319,7 @@ class DashboardDAO:
         
     async def get_latest_publications(self):
         print("Útima publicação")
-        res = await self.colletion.find({}, {"_id": 0, "institute": 1, "type": 1, "date": 1}).sort("date", -1).limit(1).to_list(1)
+        res = await self.colletion.find({}, {"_id": 0, "acronym": 1, "type": 1, "date": 1}).sort("date", -1).limit(1).to_list(1)
         return res
         
     async def get_publication_count(self):
@@ -327,7 +327,7 @@ class DashboardDAO:
         res = await self.colletion.count_documents({})
         return res
     
-    async def get_region_totals(self):
+    async def get_region_totalsf(self):
         print("Teste...jjjj")
         
         today = datetime.now()
@@ -342,15 +342,15 @@ class DashboardDAO:
                     "region_name": {
                         "$switch": {
                             "branches": [
-                                {"case": {"$in": ["$institute", ["IFAC", "IFAP", "IFAM", "IFPA", "IFRO", "IFRR", "IFTO"]]}, "then": "Norte"},
+                                {"case": {"$in": ["$acronym", ["IFAC", "IFAP", "IFAM", "IFPA", "IFRO", "IFRR", "IFTO"]]}, "then": "Norte"},
                                 
-                                {"case": {"$in": ["$institute", ["IFAL", "IFBA", "IF Baiano", "IFCE", "IFMA", "IFPB", "IFPE", "IF Sertão PE", "IFPI", "IFRN", "IFS"]]}, "then": "Nordeste"},
+                                {"case": {"$in": ["$acronym", ["IFAL", "IFBA", "IF Baiano", "IFCE", "IFMA", "IFPB", "IFPE", "IF Sertão PE", "IFPI", "IFRN", "IFS"]]}, "then": "Nordeste"},
                                 
-                                {"case": {"$in": ["$institute", ["IFB", "IFG", "IF Goiano", "IFMT", "IFMS"]]}, "then": "Centro-Oeste"},
+                                {"case": {"$in": ["$acronym", ["IFB", "IFG", "IF Goiano", "IFMT", "IFMS"]]}, "then": "Centro-Oeste"},
                                 
-                                {"case": {"$in": ["$institute", ["IFES", "IFMG", "IFNMG", "IFSULDEMINAS", "IF SUDESTE MG", "IFTM", "IFRJ", "IFF", "IFSP"]]}, "then": "Sudeste"},
+                                {"case": {"$in": ["$acronym", ["IFES", "IFMG", "IFNMG", "IFSULDEMINAS", "IF SUDESTE MG", "IFTM", "IFRJ", "IFF", "IFSP"]]}, "then": "Sudeste"},
                                 
-                                {"case": {"$in": ["$institute", ["IFPR", "IFRS", "IFFarroupilha", "IFSUL", "IFSC", "IFC"]]}, "then": "Sul"},
+                                {"case": {"$in": ["$acronym", ["IFPR", "IFRS", "IFFarroupilha", "IFSUL", "IFSC", "IFC"]]}, "then": "Sul"},
                             ],
                             "default": "Outros"
 
@@ -411,57 +411,57 @@ class DashboardDAO:
                     "state_info": {
                         "$switch": {
                             "branches": [
-                                {"case": {"$eq": ["$institute", "IFAC"]}, "then": {"uf": "AC", "state_name": "Acre"}},
-                                {"case": {"$eq": ["$institute", "IFAL"]}, "then": {"uf": "AL", "state_name": "Alagoas"}},                             
-                                {"case": {"$eq": ["$institute", "IFAP"]}, "then": {"uf": "AP", "state_name": "Amapá"}},                            
-                                {"case": {"$eq": ["$institute", "IFAM"]}, "then": {"uf": "AM", "state_name": "Amazonas"}},                            
-                                {"case": {"$eq": ["$institute", "IFBA"]}, "then": {"uf": "BA", "state_name": "Bahia"}},                      
-                                {"case": {"$eq": ["$institute", "IF Baiano"]}, "then": {"uf": "BA", "state_name": "Bahia"}},                         
-                                {"case": {"$eq": ["$institute", "IFCE"]}, "then": {"uf": "CE", "state_name": "Ceará"}},                          
-                                {"case": {"$eq": ["$institute", "IFB"]}, "then": {"uf": "DF", "state_name": "Distrito Federal"}},                          
-                                {"case": {"$eq": ["$institute", "IFES"]}, "then": {"uf": "ES", "state_name": "Espírito Santo"}},                           
-                                {"case": {"$eq": ["$institute", "IFG"]}, "then": {"uf": "GO", "state_name": "Goiás"}},                            
-                                {"case": {"$eq": ["$institute", "IF Goiano"]}, "then": {"uf": "GO", "state_name": "Goiás"}},                            
-                                {"case": {"$eq": ["$institute", "IFMA"]}, "then": {"uf": "MA", "state_name": "Maranhão"}},                            
-                                {"case": {"$eq": ["$institute", "IFMT"]}, "then": {"uf": "MT", "state_name": "Mato Grosso"}},   
-                                {"case": {"$eq": ["$institute", "IFMS"]}, "then": {"uf": "MS", "state_name": "Mato Grosso do Sul"}}, 
-                                {"case": {"$eq": ["$institute", "IFMG"]}, "then": {"uf": "MG", "state_name": "Minas Gerais"}},   
-                                {"case": {"$eq": ["$institute", "IFNMG"]}, "then": {"uf": "MG", "state_name": "Minas Gerais"}},   
-                                {"case": {"$eq": ["$institute", "IFSULDEMINAS"]}, "then": {"uf": "MG", "state_name": "Minas Gerais"}},   
-                                {"case": {"$eq": ["$institute", "IF Sudeste MG"]}, "then": {"uf": "MG", "state_name": "Minas Gerais"}},   
-                                {"case": {"$eq": ["$institute", "IFTM"]}, "then": {"uf": "MG", "state_name": "Minas Gerais"}},   
-                                {"case": {"$eq": ["$institute", "IFPA"]}, "then": {"uf": "PA", "state_name": "Pará"}},   
-                                {"case": {"$eq": ["$institute", "IFPB"]}, "then": {"uf": "PB", "state_name": "Paraíba"}},   
-                                {"case": {"$eq": ["$institute", "IFPR"]}, "then": {"uf": "PR", "state_name": "Paraná"}},   
-                                {"case": {"$eq": ["$institute", "IFPE"]}, "then": {"uf": "PE", "state_name": "Pernambuco"}},   
-                                {"case": {"$eq": ["$institute", "IF Sertão PE"]}, "then": {"uf": "PE", "state_name": "Pernambuco"}},   
-                                {"case": {"$eq": ["$institute", "IFPI"]}, "then": {"uf": "PI", "state_name": "Piauí"}},
+                                {"case": {"$eq": ["$acronym", "IFAC"]}, "then": {"uf": "AC", "state_name": "Acre"}},
+                                {"case": {"$eq": ["$acronym", "IFAL"]}, "then": {"uf": "AL", "state_name": "Alagoas"}},                             
+                                {"case": {"$eq": ["$acronym", "IFAP"]}, "then": {"uf": "AP", "state_name": "Amapá"}},                            
+                                {"case": {"$eq": ["$acronym", "IFAM"]}, "then": {"uf": "AM", "state_name": "Amazonas"}},                            
+                                {"case": {"$eq": ["$acronym", "IFBA"]}, "then": {"uf": "BA", "state_name": "Bahia"}},                      
+                                {"case": {"$eq": ["$acronym", "IF Baiano"]}, "then": {"uf": "BA", "state_name": "Bahia"}},                         
+                                {"case": {"$eq": ["$acronym", "IFCE"]}, "then": {"uf": "CE", "state_name": "Ceará"}},                          
+                                {"case": {"$eq": ["$acronym", "IFB"]}, "then": {"uf": "DF", "state_name": "Distrito Federal"}},                          
+                                {"case": {"$eq": ["$acronym", "IFES"]}, "then": {"uf": "ES", "state_name": "Espírito Santo"}},                           
+                                {"case": {"$eq": ["$acronym", "IFG"]}, "then": {"uf": "GO", "state_name": "Goiás"}},                            
+                                {"case": {"$eq": ["$acronym", "IF Goiano"]}, "then": {"uf": "GO", "state_name": "Goiás"}},                            
+                                {"case": {"$eq": ["$acronym", "IFMA"]}, "then": {"uf": "MA", "state_name": "Maranhão"}},                            
+                                {"case": {"$eq": ["$acronym", "IFMT"]}, "then": {"uf": "MT", "state_name": "Mato Grosso"}},   
+                                {"case": {"$eq": ["$acronym", "IFMS"]}, "then": {"uf": "MS", "state_name": "Mato Grosso do Sul"}}, 
+                                {"case": {"$eq": ["$acronym", "IFMG"]}, "then": {"uf": "MG", "state_name": "Minas Gerais"}},   
+                                {"case": {"$eq": ["$acronym", "IFNMG"]}, "then": {"uf": "MG", "state_name": "Minas Gerais"}},   
+                                {"case": {"$eq": ["$acronym", "IFSULDEMINAS"]}, "then": {"uf": "MG", "state_name": "Minas Gerais"}},   
+                                {"case": {"$eq": ["$acronym", "IF Sudeste MG"]}, "then": {"uf": "MG", "state_name": "Minas Gerais"}},   
+                                {"case": {"$eq": ["$acronym", "IFTM"]}, "then": {"uf": "MG", "state_name": "Minas Gerais"}},   
+                                {"case": {"$eq": ["$instacronymitute", "IFPA"]}, "then": {"uf": "PA", "state_name": "Pará"}},   
+                                {"case": {"$eq": ["$acronym", "IFPB"]}, "then": {"uf": "PB", "state_name": "Paraíba"}},   
+                                {"case": {"$eq": ["$acronym", "IFPR"]}, "then": {"uf": "PR", "state_name": "Paraná"}},   
+                                {"case": {"$eq": ["$acronym", "IFPE"]}, "then": {"uf": "PE", "state_name": "Pernambuco"}},   
+                                {"case": {"$eq": ["$acronym", "IF Sertão PE"]}, "then": {"uf": "PE", "state_name": "Pernambuco"}},   
+                                {"case": {"$eq": ["$acronym", "IFPI"]}, "then": {"uf": "PI", "state_name": "Piauí"}},
    
-                                {"case": {"$eq": ["$institute", "IFF"]}, "then": {"uf": "RJ", "state_name": "Rio de Janeiro"}},
+                                {"case": {"$eq": ["$acronym", "IFF"]}, "then": {"uf": "RJ", "state_name": "Rio de Janeiro"}},
                                 
-                                {"case": {"$eq": ["$institute", "IFRJ"]}, "then": {"uf": "RJ", "state_name": "Rio de Janeiro"}},
+                                {"case": {"$eq": ["$acronym", "IFRJ"]}, "then": {"uf": "RJ", "state_name": "Rio de Janeiro"}},
                                 
-                                {"case": {"$eq": ["$institute", "IFRN"]}, "then": {"uf": "RN", "state_name": "Rio Grande do Norte"}},
+                                {"case": {"$eq": ["$acronym", "IFRN"]}, "then": {"uf": "RN", "state_name": "Rio Grande do Norte"}},
                                 
-                                {"case": {"$eq": ["$institute", "IFFarroupilha"]}, "then": {"uf": "RS", "state_name": "Rio Grande do Sul"}},
+                                {"case": {"$eq": ["$acronym", "IFFarroupilha"]}, "then": {"uf": "RS", "state_name": "Rio Grande do Sul"}},
                                 
-                                {"case": {"$eq": ["$institute", "IFRS"]}, "then": {"uf": "RS", "state_name": "Rio Grande do Sul"}},
+                                {"case": {"$eq": ["$acronym", "IFRS"]}, "then": {"uf": "RS", "state_name": "Rio Grande do Sul"}},
                                 
-                                {"case": {"$eq": ["$institute", "IFSul"]}, "then": {"uf": "RS", "state_name": "Rio Grande do Sul"}},
+                                {"case": {"$eq": ["$acronym", "IFSul"]}, "then": {"uf": "RS", "state_name": "Rio Grande do Sul"}},
                                 
-                                {"case": {"$eq": ["$institute", "IFRO"]}, "then": {"uf": "RO", "state_name": "Rondônia"}},
+                                {"case": {"$eq": ["$acronym", "IFRO"]}, "then": {"uf": "RO", "state_name": "Rondônia"}},
                                 
-                                {"case": {"$eq": ["$institute", "IFRR"]}, "then": {"uf": "RR", "state_name": "Roraima"}},
+                                {"case": {"$eq": ["$acronym", "IFRR"]}, "then": {"uf": "RR", "state_name": "Roraima"}},
                                 
-                                {"case": {"$eq": ["$institute", "IFC"]}, "then": {"uf": "SC", "state_name": "Santa Catarina"}},
+                                {"case": {"$eq": ["$acronym", "IFC"]}, "then": {"uf": "SC", "state_name": "Santa Catarina"}},
                                 
-                                {"case": {"$eq": ["$institute", "IFSC"]}, "then": {"uf": "SC", "state_name": "Santa Catarina"}},
+                                {"case": {"$eq": ["$acronym", "IFSC"]}, "then": {"uf": "SC", "state_name": "Santa Catarina"}},
                                 
-                                {"case": {"$eq": ["$institute", "IFSP"]}, "then": {"uf": "SP", "state_name": "São Paulo"}},
+                                {"case": {"$eq": ["$acronym", "IFSP"]}, "then": {"uf": "SP", "state_name": "São Paulo"}},
                                 
-                                {"case": {"$eq": ["$institute", "IFS"]}, "then": {"uf": "SE", "state_name": "Sergipe"}},
+                                {"case": {"$eq": ["$acronym", "IFS"]}, "then": {"uf": "SE", "state_name": "Sergipe"}},
                                 
-                                {"case": {"$eq": ["$institute", "IFTO"]}, "then": {"uf": "TO", "state_name": "Tocantins"}},
+                                {"case": {"$eq": ["$acronym", "IFTO"]}, "then": {"uf": "TO", "state_name": "Tocantins"}},
                             ],
                             "default": "Outros"
                         }
@@ -554,7 +554,78 @@ class DashboardDAO:
         res = await self.colletion.aggregate(pipeline).to_list(None)
         return res
 
+    async def get_region_totals(self):
+        """
+        Agrupa publicações por data e realiza o pivot dos tipos para o formato de gráfico.
+        Retorno esperado: [{ "date": "2024-01-01", "Nomeação": 10, "Exoneração": 5, ... }]
+        """
+        pipeline = [
+            # 1. Garante que o campo date seja tratado como objeto de data
+            {
+                "$addFields": {
+                    "converted_date": {
+                        "$dateFromString": {
+                            "dateString": "$date",
+                            "onError": "$date"
+                        }
+                    }
+                }
+            },
+            # 2. Agrupa primeiro por Ano, Mês e Tipo
+            {
+                "$group": {
+                    "_id": {
+                        "year": {"$year": "$converted_date"},
+                        "month": {"$month": "$converted_date"},
+                        "type": "$type"
+                    },
+                    "count": {"$sum": 1}
+                }
+            },
+            # 3. Segundo agrupamento para realizar o PIVOT (Transformar tipos em colunas)
+            {
+                "$group": {
+                    "_id": {
+                        "year": "$_id.year",
+                        "month": "$_id.month"
+                    },
+                    "data_points": {
+                        "$push": {
+                            "k": "$_id.type",
+                            "v": "$count"
+                        }
+                    }
+                }
+            },
+            # 4. Formata a saída para o padrão do frontend
+            {
+                "$project": {
+                    "_id": 0,
+                    # Cria a string de data YYYY-MM-01 para o eixo X do gráfico
+                    "date": {
+                        "$concat": [
+                            {"$toString": "$_id.year"},
+                            "-",
+                            {"$cond": [{"$lt": ["$_id.month", 10]}, "0", ""]},
+                            {"$toString": "$_id.month"},
+                            "-01"
+                        ]
+                    },
+                    # Converte o array de K/V (tipo/contagem) em um objeto dinâmico
+                    "types": {"$arrayToObject": "$data_points"}
+                }
+            },
+            # 5. Achata o objeto para que as chaves de tipos fiquem no nível raiz
+            {
+                "$replaceRoot": {
+                    "newRoot": {"$mergeObjects": [{"date": "$date"}, "$types"]}
+                }
+            },
+            {"$sort": {"date": 1}}
+        ]
         
+        cursor = self.colletion.aggregate(pipeline)
+        return await cursor.to_list(None)
     
         
 
