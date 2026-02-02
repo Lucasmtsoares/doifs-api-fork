@@ -31,6 +31,9 @@ class PublicationDAO:
             except (ValueError, TypeError):
                 print(f"Ano inválido fornecido: {publication.year}")
                 
+        if is_valid_param(publication.acronym):
+                match_query["acronym"] = publication.acronym
+                
         if is_valid_param(publication.institute):
                 match_query["institute"] = publication.institute
                 
@@ -63,6 +66,7 @@ class PublicationDAO:
                 {
                     "$project": {
                         "_id": 0,
+                        "acronym": 1,
                         "institute": 1,
                         "concierge": 1,
                         "type": 1,
