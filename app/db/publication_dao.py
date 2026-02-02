@@ -34,9 +34,6 @@ class PublicationDAO:
         if is_valid_param(publication.acronym):
                 match_query["acronym"] = publication.acronym
                 
-        if is_valid_param(publication.institute):
-                match_query["institute"] = publication.institute
-                
         if is_valid_param(publication.name):
                 search_pattern = re.escape(publication.name)
                 match_query["content"] = {
@@ -68,7 +65,7 @@ class PublicationDAO:
                         "_id": 0,
                         "acronym": 1,
                         "institute": 1,
-                        "concierge": 1,
+                        "ordinance": 1,
                         "type": 1,
                         "date": 1,
                         "url": 1

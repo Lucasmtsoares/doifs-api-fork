@@ -76,14 +76,14 @@ def get_controller(controller_name: str):
 @app.get("/buscar")
 async def get_publication(
     name: Optional[str] = Query(None),
-    institute: Optional[str] = Query(None),
+    acronym: Optional[str] = Query(None),
     type: Optional[str] = Query(None),
     year: Optional[int] = Query(None)
 ):
     print("Rota de busca default >>>>>>")
-    publication = Publication(name, institute, type, year)
+    publication = Publication(name, acronym, type, year)
     controller = get_controller('publication_controller')
-    print(f'Objeto pub >>> {publication.name, publication.type, publication.institute, publication.year}')
+    print(f'Objeto pub >>> {publication.name, publication.type, publication.acronym, publication.year}')
     return await controller.get_publication_controller(publication)
 
 
