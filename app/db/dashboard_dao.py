@@ -327,7 +327,7 @@ class DashboardDAO:
         res = await self.colletion.count_documents({})
         return res
     
-    async def get_region_totalsf(self):
+    async def get_region_totals(self):
         print("Teste...jjjj")
         
         today = datetime.now()
@@ -554,7 +554,7 @@ class DashboardDAO:
         res = await self.colletion.aggregate(pipeline).to_list(None)
         return res
 
-    async def get_region_totals(self):
+    async def get_region_totalsj(self):
         """
         Agrupa publicações por data e realiza o pivot dos tipos para o formato de gráfico.
         Retorno esperado: [{ "date": "2024-01-01", "Nomeação": 10, "Exoneração": 5, ... }]
