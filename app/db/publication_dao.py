@@ -67,6 +67,7 @@ class PublicationDAO:
                         "institute": 1,
                         "ordinance": 1,
                         "type": 1,
+                        "tags": 1,
                         "date": 1,
                         "url": 1
                     }
