@@ -97,7 +97,7 @@ async def get_region_totals_data():
 @app.get("/states-totals") # ?
 async def get_state_totals_data():
     """Dados geográficos detalhados por estado."""
-    return await get_ctrl('state_controller').get_state_totals_controller()
+    return await get_ctrl('state_controller').get_states_totals_controller()
 
 if __name__ == "__main__":
     import uvicorn

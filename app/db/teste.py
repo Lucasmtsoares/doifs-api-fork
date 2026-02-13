@@ -11,23 +11,6 @@ class DashboardDAO:
     def __init__(self, db: AsyncIOMotorDatabase):
         self.colletion: AsyncIOMotorCollection = db[COLLETION_NAME]
         
-        # Mapeamento de Estados para Regiões (Exemplo padrão Brasil)
-        self.acronym_to_region = {
-            "IFB": "centro-oeste", "UFGD": "centro-oeste", "UNB": "centro-oeste",
-            "UFRN": "nordeste", "UFBA": "nordeste", "IFCE": "nordeste",
-            "UFAM": "norte", "UNIR": "norte", "IFPA": "norte",
-            "USP": "sudeste", "UFRJ": "sudeste", "UNICAMP": "sudeste", "UFMG": "sudeste",
-            "UFRGS": "sul", "UFSC": "sul", "UFPR": "sul"
-        }
-
-        self.region_names = {
-            "centro-oeste": "Centro-Oeste",
-            "nordeste": "Nordeste",
-            "norte": "Norte",
-            "sudeste": "Sudeste",
-            "sul": "Sul"
-        }
-        
         # Lista exata de tipos solicitados
         self.type_mapping = {
             "Nomeação": "total_nomeação",
@@ -204,84 +187,243 @@ class DashboardDAO:
         return await self.colletion.aggregate(pipeline).to_list(None)
 
     async def get_region_totals(self):
-        """
-        Retorna os totais agrupados por região e por ano.
-        Formato:
-        {
-            "region_totals": [ ... ]
-        }
-        """
-        pivot_fields = self._get_pivot_stage()
 
         pipeline = [
+
+            # 1️⃣ Criar campo region_name baseado na sigla
             {
-                "$match": {
-                    "type": {"$in": self.target_types},
-                    "acronym": {"$exists": True, "$ne": None},
-                    "year": {"$exists": True, "$ne": None}
+                "$addFields": {
+                    "region_name": {
+                        "$switch": {
+                            "branches": [
+                                {"case": {"$in": ["$acronym", ["IFAC", "IFAP", "IFAM", "IFPA", "IFRO", "IFRR", "IFTO"]]}, "then": "Norte"},
+                                {"case": {"$in": ["$acronym", ["IFAL", "IFBA", "IF Baiano", "IFCE", "IFMA", "IFPB", "IFPE", "IF Sertão PE", "IFPI", "IFRN", "IFS"]]}, "then": "Nordeste"},
+                                {"case": {"$in": ["$acronym", ["IFB", "IFG", "IF Goiano", "IFMT", "IFMS"]]}, "then": "Centro-Oeste"},
+                                {"case": {"$in": ["$acronym", ["IFES", "IFMG", "IFNMG", "IFSULDEMINAS", "IF SUDESTE MG", "IFTM", "IFRJ", "IFF", "IFSP"]]}, "then": "Sudeste"},
+                                {"case": {"$in": ["$acronym", ["IFPR", "IFRS", "IFFarroupilha", "IFSUL", "IFSC", "IFC"]]}, "then": "Sul"},
+                            ],
+                            "default": "Outros"
+                        }
+                    }
                 }
             },
+
+            # 2️⃣ Remover documentos sem região válida
             {
-                # Agrupa primeiro por sigla + ano
+                "$match": {
+                    "region_name": {"$ne": "Outros"}
+                }
+            },
+
+            # 3️⃣ Agrupar por REGIÃO + ANO
+            {
                 "$group": {
                     "_id": {
-                        "acronym": "$acronym",
+                        "region": "$region_name",
                         "year": "$year"
                     },
-                    **pivot_fields
+
+                    "nomeacoes": {
+                        "$sum": {"$cond": [{"$eq": ["$type", "Nomeação"]}, 1, 0]}
+                    },
+                    "exoneracoes": {
+                        "$sum": {"$cond": [{"$eq": ["$type", "Exoneração"]}, 1, 0]}
+                    },
+                    "afastamentos": {
+                        "$sum": {"$cond": [{"$eq": ["$type", "Afastamento"]}, 1, 0]}
+                    },
+                    "aposentadorias": {
+                        "$sum": {"$cond": [{"$eq": ["$type", "Aposentadoria"]}, 1, 0]}
+                    },
+                    "pensoes": {
+                        "$sum": {"$cond": [{"$eq": ["$type", "Pensão"]}, 1, 0]}
+                    },
+                    "demissoes": {
+                        "$sum": {"$cond": [{"$eq": ["$type", "Demissão"]}, 1, 0]}
+                    },
+                    "dispensas": {
+                        "$sum": {"$cond": [{"$eq": ["$type", "Dispensa"]}, 1, 0]}
+                    },
+                    "designacoes": {
+                        "$sum": {"$cond": [{"$eq": ["$type", "Designação"]}, 1, 0]}
+                    },
+                    "substituicoes": {
+                        "$sum": {"$cond": [{"$eq": ["$type", "Substituição"]}, 1, 0]}
+                    },
+                    "outros": {
+                        "$sum": {
+                            "$cond": [
+                                {
+                                    "$not": {
+                                        "$in": [
+                                            "$type",
+                                            [
+                                                "Nomeação", "Exoneração", "Afastamento",
+                                                "Aposentadoria", "Pensão", "Demissão",
+                                                "Dispensa", "Designação", "Substituição"
+                                            ]
+                                        ]
+                                    }
+                                },
+                                1,
+                                0
+                            ]
+                        }
+                    },
+                    "total_acts": {"$sum": 1}
+                }
+            },
+
+            # 4️⃣ Ordenar por ano e região
+            {
+                "$sort": {
+                    "_id.year": 1,
+                    "_id.region": 1
+                }
+            },
+
+            # 5️⃣ Formatar saída final
+            {
+                "$project": {
+                    "_id": 0,
+                    "name": "$_id.region",
+                    "region": {"$toLower": "$_id.region"},
+                    "year": "$_id.year",
+                    "nomeacoes": 1,
+                    "exoneracoes": 1,
+                    "afastamentos": 1,
+                    "aposentadorias": 1,
+                    "pensoes": 1,
+                    "demissoes": 1,
+                    "dispensas": 1,
+                    "designacoes": 1,
+                    "substituicoes": 1,
+                    "outros": 1,
+                    "total_acts": 1
                 }
             }
         ]
 
-        cursor = self.colletion.aggregate(pipeline)
-        raw_results = await cursor.to_list(length=None)
+        result = await self.colletion.aggregate(pipeline).to_list(None)
 
-        consolidated = {}
+        return  result
+    
+    async def get_states_totals(self):
 
-        for item in raw_results:
-            acronym = item["_id"]["acronym"]
-            year = item["_id"]["year"]
-
-            # Descobre região pela sigla
-            region_slug = self.acronym_to_region.get(acronym)
-
-            # Ignora siglas não mapeadas
-            if not region_slug:
-                continue
-
-            key = (region_slug, year)
-
-            if key not in consolidated:
-                consolidated[key] = {
-                    "name": self.region_names.get(region_slug, region_slug.title()),
-                    "region": region_slug,
-                    "year": year,
-                    "nomeacoes": 0,
-                    "exoneracoes": 0,
-                    "afastamentos": 0,
-                    "aposentadorias": 0,
-                    "pensoes": 0,
-                    "demissoes": 0,
-                    "dispensas": 0,
-                    "designacoes": 0,
-                    "substituicoes": 0,
-                    "outros": 0,
-                    "total_acts": 0
+        pipeline = [
+            {
+                "$addFields": {
+                    "state_info": {
+                        "$switch": {
+                            "branches": [
+                                {"case": {"$eq": ["$acronym", "IFAC"]}, "then": {"uf": "AC", "state_name": "Acre"}},
+                                {"case": {"$eq": ["$acronym", "IFAL"]}, "then": {"uf": "AL", "state_name": "Alagoas"}},
+                                {"case": {"$eq": ["$acronym", "IFAP"]}, "then": {"uf": "AP", "state_name": "Amapá"}},
+                                {"case": {"$eq": ["$acronym", "IFAM"]}, "then": {"uf": "AM", "state_name": "Amazonas"}},
+                                {"case": {"$eq": ["$acronym", "IFBA"]}, "then": {"uf": "BA", "state_name": "Bahia"}},
+                                {"case": {"$eq": ["$acronym", "IF Baiano"]}, "then": {"uf": "BA", "state_name": "Bahia"}},
+                                {"case": {"$eq": ["$acronym", "IFCE"]}, "then": {"uf": "CE", "state_name": "Ceará"}},
+                                {"case": {"$eq": ["$acronym", "IFB"]}, "then": {"uf": "DF", "state_name": "Distrito Federal"}},
+                                {"case": {"$eq": ["$acronym", "IFES"]}, "then": {"uf": "ES", "state_name": "Espírito Santo"}},
+                                {"case": {"$eq": ["$acronym", "IFG"]}, "then": {"uf": "GO", "state_name": "Goiás"}},
+                                {"case": {"$eq": ["$acronym", "IF Goiano"]}, "then": {"uf": "GO", "state_name": "Goiás"}},
+                                {"case": {"$eq": ["$acronym", "IFMA"]}, "then": {"uf": "MA", "state_name": "Maranhão"}},
+                                {"case": {"$eq": ["$acronym", "IFMT"]}, "then": {"uf": "MT", "state_name": "Mato Grosso"}},
+                                {"case": {"$eq": ["$acronym", "IFMS"]}, "then": {"uf": "MS", "state_name": "Mato Grosso do Sul"}},
+                                {"case": {"$eq": ["$acronym", "IFMG"]}, "then": {"uf": "MG", "state_name": "Minas Gerais"}},
+                                {"case": {"$eq": ["$acronym", "IFNMG"]}, "then": {"uf": "MG", "state_name": "Minas Gerais"}},
+                                {"case": {"$eq": ["$acronym", "IFSULDEMINAS"]}, "then": {"uf": "MG", "state_name": "Minas Gerais"}},
+                                {"case": {"$eq": ["$acronym", "IF Sudeste MG"]}, "then": {"uf": "MG", "state_name": "Minas Gerais"}},
+                                {"case": {"$eq": ["$acronym", "IFTM"]}, "then": {"uf": "MG", "state_name": "Minas Gerais"}},
+                                {"case": {"$eq": ["$acronym", "IFPA"]}, "then": {"uf": "PA", "state_name": "Pará"}},
+                                {"case": {"$eq": ["$acronym", "IFPB"]}, "then": {"uf": "PB", "state_name": "Paraíba"}},
+                                {"case": {"$eq": ["$acronym", "IFPR"]}, "then": {"uf": "PR", "state_name": "Paraná"}},
+                                {"case": {"$eq": ["$acronym", "IFPE"]}, "then": {"uf": "PE", "state_name": "Pernambuco"}},
+                                {"case": {"$eq": ["$acronym", "IF Sertão PE"]}, "then": {"uf": "PE", "state_name": "Pernambuco"}},
+                                {"case": {"$eq": ["$acronym", "IFPI"]}, "then": {"uf": "PI", "state_name": "Piauí"}},
+                                {"case": {"$eq": ["$acronym", "IFF"]}, "then": {"uf": "RJ", "state_name": "Rio de Janeiro"}},
+                                {"case": {"$eq": ["$acronym", "IFRJ"]}, "then": {"uf": "RJ", "state_name": "Rio de Janeiro"}},
+                                {"case": {"$eq": ["$acronym", "IFRN"]}, "then": {"uf": "RN", "state_name": "Rio Grande do Norte"}},
+                                {"case": {"$eq": ["$acronym", "IFFarroupilha"]}, "then": {"uf": "RS", "state_name": "Rio Grande do Sul"}},
+                                {"case": {"$eq": ["$acronym", "IFRS"]}, "then": {"uf": "RS", "state_name": "Rio Grande do Sul"}},
+                                {"case": {"$eq": ["$acronym", "IFSul"]}, "then": {"uf": "RS", "state_name": "Rio Grande do Sul"}},
+                                {"case": {"$eq": ["$acronym", "IFRO"]}, "then": {"uf": "RO", "state_name": "Rondônia"}},
+                                {"case": {"$eq": ["$acronym", "IFRR"]}, "then": {"uf": "RR", "state_name": "Roraima"}},
+                                {"case": {"$eq": ["$acronym", "IFC"]}, "then": {"uf": "SC", "state_name": "Santa Catarina"}},
+                                {"case": {"$eq": ["$acronym", "IFSC"]}, "then": {"uf": "SC", "state_name": "Santa Catarina"}},
+                                {"case": {"$eq": ["$acronym", "IFSP"]}, "then": {"uf": "SP", "state_name": "São Paulo"}},
+                                {"case": {"$eq": ["$acronym", "IFS"]}, "then": {"uf": "SE", "state_name": "Sergipe"}},
+                                {"case": {"$eq": ["$acronym", "IFTO"]}, "then": {"uf": "TO", "state_name": "Tocantins"}},
+                            ],
+                            "default": "Outros"
+                        }
+                    }
                 }
+            },
+            {"$match": {"state_info": {"$ne": "Outros"}}},
+            {
+                "$group": {
+                    "_id": {
+                        "year": "$year",
+                        "uf": "$state_info.uf",
+                        "state_name": "$state_info.state_name"
+                    },
 
-            # Soma todos os campos
-            for field in pivot_fields.keys():
-                consolidated[key][field] += item.get(field, 0)
+                    "nomeacoes": {"$sum": {"$cond": [{"$eq": ["$type", "Nomeação"]}, 1, 0]}},
+                    "exoneracoes": {"$sum": {"$cond": [{"$eq": ["$type", "Exoneração"]}, 1, 0]}},
+                    "afastamentos": {"$sum": {"$cond": [{"$eq": ["$type", "Afastamento"]}, 1, 0]}},
+                    "aposentadorias": {"$sum": {"$cond": [{"$eq": ["$type", "Aposentadoria"]}, 1, 0]}},
+                    "pensoes": {"$sum": {"$cond": [{"$eq": ["$type", "Pensão"]}, 1, 0]}},
+                    "demissoes": {"$sum": {"$cond": [{"$eq": ["$type", "Demissão"]}, 1, 0]}},
+                    "dispensas": {"$sum": {"$cond": [{"$eq": ["$type", "Dispensa"]}, 1, 0]}},
+                    "designacoes": {"$sum": {"$cond": [{"$eq": ["$type", "Designação"]}, 1, 0]}},
+                    "substituicoes": {"$sum": {"$cond": [{"$eq": ["$type", "Substituição"]}, 1, 0]}},
+                    "outros": {
+                        "$sum": {
+                            "$cond": [
+                                {
+                                    "$not": {
+                                        "$in": [
+                                            "$type",
+                                            [
+                                                "Nomeação", "Exoneração", "Afastamento",
+                                                "Aposentadoria", "Pensão", "Demissão",
+                                                "Dispensa", "Designação", "Substituição"
+                                            ]
+                                        ]
+                                    }
+                                },
+                                1,
+                                0
+                            ]
+                        }
+                    },
+                    "total_acts": {"$sum": 1}
+                }
+            },
+            {"$sort": {"_id.year": 1, "_id.uf": 1}},
+            {
+                "$project": {
+                    "_id": 0,
+                    "uf": "$_id.uf",
+                    "state_name": "$_id.state_name",
+                    "year": "$_id.year",
+                    "nomeacoes": 1,
+                    "exoneracoes": 1,
+                    "afastamentos": 1,
+                    "aposentadorias": 1,
+                    "pensoes": 1,
+                    "demissoes": 1,
+                    "dispensas": 1,
+                    "designacoes": 1,
+                    "substituicoes": 1,
+                    "outros": 1,
+                    "total_acts": 1
+                }
+            }
+        ]
 
-        # Converte para lista
-        final_list = list(consolidated.values())
-
-        # Ordena por ano crescente e região
-        final_list.sort(key=lambda x: (x["year"], x["region"]))
-
-        return {
-            "region_totals": final_list
-        }
+        return await self.colletion.aggregate(pipeline).to_list(None)
 
 
     async def get_top_personnel(self):

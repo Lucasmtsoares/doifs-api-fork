@@ -1,18 +1,17 @@
 from dotenv import load_dotenv
 import os
-load_dotenv()
-
 from contextlib import asynccontextmanager
-from fastapi import FastAPI, HTTPException, Query
-from typing import AsyncGenerator, Optional
+from fastapi import FastAPI, HTTPException, Body
+from typing import AsyncGenerator, Any
+from fastapi.middleware.cors import CORSMiddleware
+
+# Importações internas
 from app.models.publication import Publication
 from app.db.publication_dao import PublicationDAO
-from app.db.dashboard_dao import DashboardDAO
-
-#Importações de config do database
+from app.db.teste import DashboardDAO
 from app.db.connection_db import mongo_client_manager
 
-from api.controllers.controller import (
+from api.controllers.testec import (
     PublicationController,
     SummaryController,
     PeriodicController,
@@ -22,111 +21,85 @@ from api.controllers.controller import (
     StatesController
 )
 
+load_dotenv()
 DB_NAME = os.getenv("DB_NAME")
 
-#Função declarativa de tempo de vida
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
-    print("Iniciando server e API...")
-    #Startup
     mongo_client = mongo_client_manager.connection()
-    
     try:
         await mongo_client.admin.command('ping')
         db = mongo_client[DB_NAME]
         
-        publication_dao = PublicationDAO(db)
-        dashboard_dao = DashboardDAO(db)
+        # Instanciação dos DAOs
+        pub_dao = PublicationDAO(db)
+        dash_dao = DashboardDAO(db)
         
-        # 2. Inicializa TODOS os Controllers, INJETANDO o DAO
-        app.state.publication_controller = PublicationController(publication_dao)
-        app.state.summary_controller = SummaryController(dashboard_dao)
-        app.state.periodic_controller = PeriodicController(dashboard_dao)
-        app.state.personnel_controller = PersonnelController(dashboard_dao)
-        app.state.institute_controller = InstituteController(dashboard_dao)
-        app.state.region_controller = RegionController(dashboard_dao)
-        app.state.state_controller = StatesController(dashboard_dao)
+        # Injeção de dependência nos Controllers
+        app.state.publication_controller = PublicationController(pub_dao)
+        app.state.summary_controller = SummaryController(dash_dao)
+        app.state.periodic_controller = PeriodicController(dash_dao)
+        app.state.personnel_controller = PersonnelController(dash_dao)
+        app.state.institute_controller = InstituteController(dash_dao)
+        app.state.region_controller = RegionController(dash_dao)
+        app.state.state_controller = StatesController(dash_dao)
         
-        app.state.db_client = mongo_client
-        
-        print(f"Serviços da API e DB ({DB_NAME}) inicializados com sucesso")
-    except Exception as e:
-        print(f"Erro crítico no startup do DB: ({e}). A API pode estar indisponível")
-        app.state.db_client = None
-        app.state.summary_controller = None
-    yield
-    
-    #shutdown
-    mongo_client_manager.close()
-    
-    
-#Inicializando a FastAPI com LIFESPAN    
-app = FastAPI(title = "DOIFs API", lifespan=lifespan)
+        yield
+    finally:
+        mongo_client.close()
 
-#função de checagem de disponibilidade
-def get_controller(controller_name: str):
-    #Retorna o controller ou erro 503 se o serviço não estiver pronto
-    controller = getattr(app.state, controller_name, None)
-    if not controller:
-        raise HTTPException(status_code=503, detail="Serviços de database indisponíveis")
-    return controller
+app = FastAPI(lifespan=lifespan)
 
-#Rotas
+# Configuração de CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-@app.get("/buscar")
-async def get_publication(
-    name: Optional[str] = Query(None),
-    acronym: Optional[str] = Query(None),
-    type: Optional[str] = Query(None),
-    year: Optional[int] = Query(None)
-):
-    print("Rota de busca default >>>>>>")
-    publication = Publication(name, acronym, type, year)
-    controller = get_controller('publication_controller')
-    print(f'Objeto pub >>> {publication.name, publication.type, publication.acronym, publication.year}')
-    return await controller.get_publication_controller(publication)
+def get_ctrl(name: str):
+    return getattr(app.state, name)
 
+# --- ROTAS ---
 
-@app.get("/get-totals")
+@app.post("/buscar", response_model=None)
+async def buscar_publicacoes(publication: Any = Body(...)):
+    """Rota de busca textual e filtrada."""
+    ctrl = get_ctrl('publication_controller')
+    return await ctrl.get_publication_controller(publication)
+
+@app.get("/get-totals") # Ok ----
 async def get_totals():
-    controller = get_controller('summary_controller')
-    return await controller.get_totals_controller()
+    """Resumo: tipos no último mês, últimas pubs e contagem total."""
+    return await get_ctrl('summary_controller').get_totals_controller()
 
-@app.get("/periodic-types")
+@app.get("/periodic-types") # Ok ----
 async def get_periodic_types_data():
-    controller = get_controller('periodic_controller')
-    return await controller.get_periodic_type_controller()
-   
+    """Evolução temporal (90 dias)."""
+    return await get_ctrl('periodic_controller').get_periodic_type_controller()
 
-@app.get("/institutes-overview")
+@app.get("/institutes-overview") # Ok ---
 async def get_institutes_overview_data():
-    controller = get_controller('institute_controller')
-    return await controller.get_institutes_overview_controller()
+    """Visão por institutos e anos."""
+    return await get_ctrl('institute_controller').get_institutes_overview_controller()
 
-
-@app.get("/top-personnel")
+@app.get("/top-personnel") # Ok ---
 async def get_top_personnel_data():
-    controller = get_controller('personnel_controller')
-    return await controller.get_top_personnel_controller()
+    """Ranking de responsáveis."""
+    return await get_ctrl('personnel_controller').get_top_personnel_controller()
 
-@app.get("/region-totals")
+@app.get("/region-totals") # ?
 async def get_region_totals_data():
-    controller = get_controller('region_controller')
-    return await controller.get_region_totals_controller()
+    """Dados geográficos (Regiões/Estados)."""
+    return await get_ctrl('region_controller').get_region_totals_controller()
 
-@app.get("/states-totals")
+@app.get("/states-totals") # ?
 async def get_state_totals_data():
-    controller = get_controller('state_controller')
-    return await controller.get_state_totals_controller()
-
-
-
-"""
+    """Dados geográficos detalhados por estado."""
+    return await get_ctrl('state_controller').get_states_totals_controller()
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8000))  # usa o valor do Render ou 8000 como fallback
-    uvicorn.run("main:app", host="0.0.0.0", port=port, reload=False)
-    
-    
-    -no render -> python api/default.py --no do star command
-"""
+    import uvicorn
+    port = int(os.getenv("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)

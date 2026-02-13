@@ -107,9 +107,9 @@ class StatesController:
     def __init__(self, dashboard_dao: DashboardDAO):
         self.dash = dashboard_dao
         
-    async def get_state_totals_controller(self):
+    async def get_states_totals_controller(self):
         # Sincronizado com Item 8 do DAO
-        state_totals = await self.dash.get_region_totals()
+        state_totals = await self.dash.get_states_totals()
         return {
             "state_totals": state_totals
         }
