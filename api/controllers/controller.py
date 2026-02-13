@@ -1,4 +1,3 @@
-# Logica de controller
 from app.db.dashboard_dao import DashboardDAO
 from app.db.publication_dao import PublicationDAO
 
@@ -112,4 +111,21 @@ class StatesController:
         state_totals = await self.dash.get_states_totals()
         return {
             "state_totals": state_totals
+        }
+        
+class YearsController:
+    """
+    Controlador para anos disponíveis (para filtros).
+    """
+    
+    def __init__(self, dashboard_dao: DashboardDAO):
+        self.dash = dashboard_dao
+        
+    async def get_available_years_controller(self):
+        # Retorno dos anos disponíveis para filtros
+        
+        years = await self.dash.get_available_years()
+        
+        return {
+            "years": years
         }

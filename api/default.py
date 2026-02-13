@@ -8,17 +8,18 @@ from fastapi.middleware.cors import CORSMiddleware
 # Importações internas
 from app.models.publication import Publication
 from app.db.publication_dao import PublicationDAO
-from app.db.teste import DashboardDAO
+from app.db.dashboard_dao import DashboardDAO
 from app.db.connection_db import mongo_client_manager
 
-from api.controllers.testec import (
+from api.controllers.controller import (
     PublicationController,
     SummaryController,
     PeriodicController,
     PersonnelController,
     InstituteController,
     RegionController,
-    StatesController
+    StatesController,
+    YearsController
 )
 
 load_dotenv()
@@ -43,6 +44,7 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
         app.state.institute_controller = InstituteController(dash_dao)
         app.state.region_controller = RegionController(dash_dao)
         app.state.state_controller = StatesController(dash_dao)
+        app.state.years_controller = YearsController(dash_dao)
         
         yield
     finally:
@@ -98,6 +100,11 @@ async def get_region_totals_data():
 async def get_state_totals_data():
     """Dados geográficos detalhados por estado."""
     return await get_ctrl('state_controller').get_states_totals_controller()
+
+@app.get("/years")
+async def get_avalable_years_data():
+    """Anos disponiveis"""
+    return await get_ctrl('years_controller').get_available_years_controller()
 
 if __name__ == "__main__":
     import uvicorn
