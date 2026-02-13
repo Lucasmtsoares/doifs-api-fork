@@ -1,0 +1,823 @@
+/get-totals
+({
+  "types_counts": {
+    "nomeacoes": 16,
+    "exoneracoes": 9
+  },
+  "latest_pubs": [
+    {
+      "acronym": "IFAC",
+      "date": "2026-02-06",
+      "type": "Dispensa"
+    }
+  ],
+  "total_count": 105181
+})
+
+/periodic-types
+({
+  "periodic_types": [
+    {
+      "date": "2025-11-08",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2025-11-09",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2025-11-10",
+      "nomeacoes": 8,
+      "exoneracoes": 2
+    },
+    {
+      "date": "2025-11-11",
+      "nomeacoes": 8,
+      "exoneracoes": 3
+    },
+    {
+      "date": "2025-11-12",
+      "nomeacoes": 7,
+      "exoneracoes": 3
+    },
+    {
+      "date": "2025-11-13",
+      "nomeacoes": 9,
+      "exoneracoes": 2
+    },
+    {
+      "date": "2025-11-14",
+      "nomeacoes": 3,
+      "exoneracoes": 2
+    },
+    {
+      "date": "2025-11-15",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2025-11-16",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2025-11-17",
+      "nomeacoes": 3,
+      "exoneracoes": 2
+    },
+    {
+      "date": "2025-11-18",
+      "nomeacoes": 4,
+      "exoneracoes": 1
+    },
+    {
+      "date": "2025-11-19",
+      "nomeacoes": 17,
+      "exoneracoes": 2
+    },
+    {
+      "date": "2025-11-20",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2025-11-21",
+      "nomeacoes": 3,
+      "exoneracoes": 1
+    },
+    {
+      "date": "2025-11-22",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2025-11-23",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2025-11-24",
+      "nomeacoes": 6,
+      "exoneracoes": 3
+    },
+    {
+      "date": "2025-11-25",
+      "nomeacoes": 6,
+      "exoneracoes": 2
+    },
+    {
+      "date": "2025-11-26",
+      "nomeacoes": 7,
+      "exoneracoes": 4
+    },
+    {
+      "date": "2025-11-27",
+      "nomeacoes": 8,
+      "exoneracoes": 2
+    },
+    {
+      "date": "2025-11-28",
+      "nomeacoes": 2,
+      "exoneracoes": 1
+    },
+    {
+      "date": "2025-11-29",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2025-11-30",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2025-12-01",
+      "nomeacoes": 5,
+      "exoneracoes": 3
+    },
+    {
+      "date": "2025-12-02",
+      "nomeacoes": 10,
+      "exoneracoes": 4
+    },
+    {
+      "date": "2025-12-03",
+      "nomeacoes": 6,
+      "exoneracoes": 10
+    },
+    {
+      "date": "2025-12-04",
+      "nomeacoes": 12,
+      "exoneracoes": 5
+    },
+    {
+      "date": "2025-12-05",
+      "nomeacoes": 4,
+      "exoneracoes": 6
+    },
+    {
+      "date": "2025-12-06",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2025-12-07",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2025-12-08",
+      "nomeacoes": 3,
+      "exoneracoes": 2
+    },
+    {
+      "date": "2025-12-09",
+      "nomeacoes": 4,
+      "exoneracoes": 4
+    },
+    {
+      "date": "2025-12-10",
+      "nomeacoes": 4,
+      "exoneracoes": 3
+    },
+    {
+      "date": "2025-12-11",
+      "nomeacoes": 5,
+      "exoneracoes": 4
+    },
+    {
+      "date": "2025-12-12",
+      "nomeacoes": 2,
+      "exoneracoes": 2
+    },
+    {
+      "date": "2025-12-13",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2025-12-14",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2025-12-15",
+      "nomeacoes": 12,
+      "exoneracoes": 2
+    },
+    {
+      "date": "2025-12-16",
+      "nomeacoes": 5,
+      "exoneracoes": 3
+    },
+    {
+      "date": "2025-12-17",
+      "nomeacoes": 5,
+      "exoneracoes": 10
+    },
+    {
+      "date": "2025-12-18",
+      "nomeacoes": 3,
+      "exoneracoes": 1
+    },
+    {
+      "date": "2025-12-19",
+      "nomeacoes": 12,
+      "exoneracoes": 8
+    },
+    {
+      "date": "2025-12-20",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2025-12-21",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2025-12-22",
+      "nomeacoes": 12,
+      "exoneracoes": 6
+    },
+    {
+      "date": "2025-12-23",
+      "nomeacoes": 10,
+      "exoneracoes": 8
+    },
+    {
+      "date": "2025-12-24",
+      "nomeacoes": 12,
+      "exoneracoes": 10
+    },
+    {
+      "date": "2025-12-25",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2025-12-26",
+      "nomeacoes": 6,
+      "exoneracoes": 3
+    },
+    {
+      "date": "2025-12-27",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2025-12-28",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2025-12-29",
+      "nomeacoes": 45,
+      "exoneracoes": 2
+    },
+    {
+      "date": "2025-12-30",
+      "nomeacoes": 25,
+      "exoneracoes": 4
+    },
+    {
+      "date": "2025-12-31",
+      "nomeacoes": 25,
+      "exoneracoes": 10
+    },
+    {
+      "date": "2026-01-01",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-01-02",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-01-03",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-01-04",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-01-05",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-01-06",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-01-07",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-01-08",
+      "nomeacoes": 1,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-01-09",
+      "nomeacoes": 2,
+      "exoneracoes": 1
+    },
+    {
+      "date": "2026-01-10",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-01-11",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-01-12",
+      "nomeacoes": 2,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-01-13",
+      "nomeacoes": 2,
+      "exoneracoes": 1
+    },
+    {
+      "date": "2026-01-14",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-01-15",
+      "nomeacoes": 8,
+      "exoneracoes": 4
+    },
+    {
+      "date": "2026-01-16",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-01-17",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-01-18",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-01-19",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-01-20",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-01-21",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-01-22",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-01-23",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-01-24",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-01-25",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-01-26",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-01-27",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-01-28",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-01-29",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-01-30",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-01-31",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-02-01",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-02-02",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-02-03",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-02-04",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    },
+    {
+      "date": "2026-02-05",
+      "nomeacoes": 0,
+      "exoneracoes": 0
+    }
+  ]
+)
+
+/institutes-overview
+({
+  "institutes_overview": [
+    {
+      "acronym": "IF Baiano",
+      "year": 2018,
+      "month": "Jan",
+      "nomeacoes": 3,
+      "exoneracoes": 3
+    },
+    {
+      "acronym": "IF Baiano",
+      "year": 2018,
+      "month": "Fev",
+      "nomeacoes": 2,
+      "exoneracoes": 1
+    },
+    {
+      "acronym": "IF Baiano",
+      "year": 2018,
+      "month": "Mar",
+      "nomeacoes": 2,
+      "exoneracoes": 0
+    },
+    {
+      "acronym": "IF Baiano",
+      "year": 2018,
+      "month": "Abr",
+      "nomeacoes": 7,
+      "exoneracoes": 1
+    },
+    {
+      "acronym": "IF Baiano",
+      "year": 2018,
+      "month": "Mai",
+      "nomeacoes": 2,
+      "exoneracoes": 1
+    },
+    {
+      "acronym": "IF Baiano",
+      "year": 2018,
+      "month": "Jun",
+      "nomeacoes": 2,
+      "exoneracoes": 2
+    },...})
+
+/top-personnel
+({
+  "tops_personnel": [
+    {
+      "responsible": "SILMARIO BATISTA DOS SANTOS",
+      "acronym": "IFSP",
+      "responsible_institute": "SILMARIO BATISTA DOS SANTOS - IFSP",
+      "total_acts": 202,
+      "nomeacoes": 109,
+      "exoneracoes": 93
+    },
+    {
+      "responsible": "JEAN CARLOS COELHO DE ALENCAR",
+      "acronym": "IF Sertão PE",
+      "responsible_institute": "JEAN CARLOS COELHO DE ALENCAR - IF Sertão PE",
+      "total_acts": 165,
+      "nomeacoes": 151,
+      "exoneracoes": 14
+    },
+    {
+      "responsible": "PAULO BORGES DA CUNHA",
+      "acronym": "IFPI",
+      "responsible_institute": "PAULO BORGES DA CUNHA - IFPI",
+      "total_acts": 145,
+      "nomeacoes": 131,
+      "exoneracoes": 14
+    },
+    {
+      "responsible": "JULIO CESAR DOS SANTOS",
+      "acronym": "IFMT",
+      "responsible_institute": "JULIO CESAR DOS SANTOS - IFMT",
+      "total_acts": 145,
+      "nomeacoes": 75,
+      "exoneracoes": 70
+    },
+    {
+      "responsible": "JOSÉ ARNÓBIO DE ARAÚJO FILHO",
+      "acronym": "IFRN",
+      "responsible_institute": "JOSÉ ARNÓBIO DE ARAÚJO FILHO - IFRN",
+      "total_acts": 103,
+      "nomeacoes": 47,
+      "exoneracoes": 56
+    },
+    {
+      "responsible": "VALDIR JOSÉ DA SILVA",
+      "acronym": "IF Sudeste MG",
+      "responsible_institute": "VALDIR JOSÉ DA SILVA - IF Sudeste MG",
+      "total_acts": 101,
+      "nomeacoes": 68,
+      "exoneracoes": 33
+    },
+    {
+      "responsible": "LUZIA MATOS MOTA",
+      "acronym": "IFBA",
+      "responsible_institute": "LUZIA MATOS MOTA - IFBA",
+      "total_acts": 83,
+      "nomeacoes": 46,
+      "exoneracoes": 37
+    },
+    {
+      "responsible": "RUDINEI KOCK EXTERCKOTER",
+      "acronym": "IFC",
+      "responsible_institute": "RUDINEI KOCK EXTERCKOTER - IFC",
+      "total_acts": 76,
+      "nomeacoes": 57,
+      "exoneracoes": 19
+    },
+    {
+      "responsible": "FÁBIO STORCH DE OLIVEIRA",
+      "acronym": "IFAC",
+      "responsible_institute": "FÁBIO STORCH DE OLIVEIRA - IFAC",
+      "total_acts": 69,
+      "nomeacoes": 53,
+      "exoneracoes": 16
+    },
+    {
+      "responsible": "NILRA JANE FILGUEIRA BEZERRA",
+      "acronym": "IFRR",
+      "responsible_institute": "NILRA JANE FILGUEIRA BEZERRA - IFRR",
+      "total_acts": 68,
+      "nomeacoes": 39,
+      "exoneracoes": 29
+    }
+  ]
+})
+
+/region-totals
+({
+  "region_totals": [
+    {
+      "name": "Centro-Oeste",
+      "region": "centro-oeste",
+      "nomeacoes": 171,
+      "exoneracoes": 152
+    },
+    {
+      "name": "Nordeste",
+      "region": "nordeste",
+      "nomeacoes": 682,
+      "exoneracoes": 297
+    },
+    {
+      "name": "Norte",
+      "region": "norte",
+      "nomeacoes": 310,
+      "exoneracoes": 179
+    },
+    {
+      "name": "Sudeste",
+      "region": "sudeste",
+      "nomeacoes": 385,
+      "exoneracoes": 231
+    },
+    {
+      "name": "Sul",
+      "region": "sul",
+      "nomeacoes": 271,
+      "exoneracoes": 90
+    }
+  ]
+})
+
+/states-totals
+({
+  "state_totals": [
+    {
+      "uf": "AC",
+      "state_name": "Acre",
+      "year": 2018,
+      "nomeacoes": 61,
+      "exoneracoes": 30
+    },
+    {
+      "uf": "AL",
+      "state_name": "Alagoas",
+      "year": 2018,
+      "nomeacoes": 36,
+      "exoneracoes": 20
+    },
+    {
+      "uf": "AM",
+      "state_name": "Amazonas",
+      "year": 2018,
+      "nomeacoes": 58,
+      "exoneracoes": 29
+    },
+    {
+      "uf": "AP",
+      "state_name": "Amapá",
+      "year": 2018,
+      "nomeacoes": 26,
+      "exoneracoes": 9
+    },
+    {
+      "uf": "BA",
+      "state_name": "Bahia",
+      "year": 2018,
+      "nomeacoes": 62,
+      "exoneracoes": 26
+    },
+    {
+      "uf": "CE",
+      "state_name": "Ceará",
+      "year": 2018,
+      "nomeacoes": 5,
+      "exoneracoes": 32
+    },
+    {
+      "uf": "DF",
+      "state_name": "Distrito Federal",
+      "year": 2018,
+      "nomeacoes": 27,
+      "exoneracoes": 32
+    },
+    {
+      "uf": "ES",
+      "state_name": "Espírito Santo",
+      "year": 2018,
+      "nomeacoes": 26,
+      "exoneracoes": 8
+    },
+    {
+      "uf": "GO",
+      "state_name": "Goiás",
+      "year": 2018,
+      "nomeacoes": 93,
+      "exoneracoes": 29
+    },
+    {
+      "uf": "MA",
+      "state_name": "Maranhão",
+      "year": 2018,
+      "nomeacoes": 39,
+      "exoneracoes": 8
+    },
+    {
+      "uf": "MG",
+      "state_name": "Minas Gerais",
+      "year": 2018,
+      "nomeacoes": 310,
+      "exoneracoes": 102
+    },
+    {
+      "uf": "MS",
+      "state_name": "Mato Grosso do Sul",
+      "year": 2018,
+      "nomeacoes": 12,
+      "exoneracoes": 13
+    },
+    {
+      "uf": "MT",
+      "state_name": "Mato Grosso",
+      "year": 2018,
+      "nomeacoes": 19,
+      "exoneracoes": 36
+    },
+    {
+      "uf": "PB",
+      "state_name": "Paraíba",
+      "year": 2018,
+      "nomeacoes": 10,
+      "exoneracoes": 12
+    },
+    {
+      "uf": "PE",
+      "state_name": "Pernambuco",
+      "year": 2018,
+      "nomeacoes": 52,
+      "exoneracoes": 23
+    },...})
+
+
+
+
+
+
+-------------------------------------
+
+{
+"periodic_data": [
+    {
+    "date": "2025-11-10",
+    "Nomeação": 8,
+    "Exoneração": 2,
+    "Aposentadoria": 3,
+    "Substituição": 5
+    },
+    {
+    "date": "2025-11-11",
+    "Nomeação": 8,
+    "Exoneração": 3,
+    "Designação": 12,
+    "Dispensa": 4
+    },
+    {
+    "date": "2025-11-12",
+    "Nomeação": 7,
+    "Exoneração": 3,
+    "Pensão": 2
+    }
+],
+
+"institutes_data": [
+    { "institute": "Campus Maceió", "type": "Nomeação", "count": 146 },
+    { "institute": "Campus Maceió", "type": "Exoneração", "count": 32 },
+    { "institute": "Campus Arapiraca", "type": "Aposentadoria", "count": 18 },
+    { "institute": "Reitoria", "type": "Designação", "count": 55 }
+    ],
+{
+      "acronym": "IF Baiano",
+      "year": 2018,
+      "month": "Jan",
+      "nomeacoes": 3,
+      "exoneracoes": 3
+    },
+
+"geo_data": [
+    { "state": "AL", "region": "Nordeste", "type": "Nomeação", "count": 120 },
+    { "state": "AL", "region": "Nordeste", "type": "Exoneração", "count": 27 },
+    { "state": "BA", "region": "Nordeste", "type": "Aposentadoria", "count": 62 }
+    ],...
+
+"top_personnel": [
+    { "name": "MARIA SILVA", "type": "Nomeação", "count": 85 },
+    { "name": "JOSE SANTOS", "type": "Exoneração", "count": 42 },
+    { "name": "MARIA SILVA", "type": "Designação", "count": 30 }
+],
+
+"latest_pubs": [
+    {
+    "acronym": "IFAC",
+    "date": "2026-02-06",
+    "type": "Dispensa",
+    "concierge": "JOSE SANTOS"
+    }
+],
+
+"total_count": 105181,
+
+"available_years": [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026]
+
+}
+
+
+Dashboard DAO Corrigido e Dinâmico
