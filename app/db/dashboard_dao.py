@@ -104,6 +104,69 @@ class DashboardDAO:
                 totals[key] = 0
                 
         return totals
+    
+    async def get_monthly_totals(self):
+
+        pipeline = [
+
+            # 1️⃣ Criar número do mês para ordenação cronológica
+            {
+                "$addFields": {
+                    "month_number": {
+                        "$switch": {
+                            "branches": [
+                                {"case": {"$eq": ["$month", "Jan"]}, "then": 1},
+                                {"case": {"$eq": ["$month", "Fev"]}, "then": 2},
+                                {"case": {"$eq": ["$month", "Mar"]}, "then": 3},
+                                {"case": {"$eq": ["$month", "Abr"]}, "then": 4},
+                                {"case": {"$eq": ["$month", "Mai"]}, "then": 5},
+                                {"case": {"$eq": ["$month", "Jun"]}, "then": 6},
+                                {"case": {"$eq": ["$month", "Jul"]}, "then": 7},
+                                {"case": {"$eq": ["$month", "Ago"]}, "then": 8},
+                                {"case": {"$eq": ["$month", "Set"]}, "then": 9},
+                                {"case": {"$eq": ["$month", "Out"]}, "then": 10},
+                                {"case": {"$eq": ["$month", "Nov"]}, "then": 11},
+                                {"case": {"$eq": ["$month", "Dez"]}, "then": 12},
+                            ],
+                            "default": 0
+                        }
+                    }
+                }
+            },
+
+            # 2️⃣ Agrupar por ano + mês
+            {
+                "$group": {
+                    "_id": {
+                        "year": "$year",
+                        "month": "$month",
+                        "month_number": "$month_number"
+                    },
+                    "total": {"$sum": 1}
+                }
+            },
+
+            # 3️⃣ Ordenar cronologicamente
+            {
+                "$sort": {
+                    "_id.year": 1,
+                    "_id.month_number": 1
+                }
+            },
+
+            # 4️⃣ Formatar saída final
+            {
+                "$project": {
+                    "_id": 0,
+                    "year": "$_id.year",
+                    "month": "$_id.month",
+                    "total": 1
+                }
+            }
+        ]
+
+        return await self.colletion.aggregate(pipeline).to_list(None)
+
 
     async def get_periodic_type_counts(self):
         """
