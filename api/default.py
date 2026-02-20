@@ -106,7 +106,3 @@ async def get_avalable_years_data():
     """Anos disponiveis"""
     return await get_ctrl('years_controller').get_available_years_controller()
 
-if __name__ == "__main__":
-    import uvicorn
-    port = int(os.getenv("PORT", 8000))
-    uvicorn.run(app, host="0.0.0.0", port=port)

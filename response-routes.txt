@@ -1,0 +1,1687 @@
+//Rota "get-totals" = resposta:
+"{
+  "types_counts": {
+    "nomeacoes": 1,
+    "exoneracoes": 3,
+    "afastamentos": 0,
+    "aposentadorias": 0,
+    "pensoes": 0,
+    "demissoes": 1,
+    "dispensas": 1,
+    "designacoes": 2,
+    "substituicoes": 0,
+    "outros": 0,
+    "total_acts": 8
+  },
+  "latest_pubs": [
+    {
+      "acronym": "IFAC",
+      "date": "2026-02-06",
+      "type": "Nomeação"
+    },
+    {
+      "acronym": "IFAC",
+      "date": "2026-02-06",
+      "type": "Exoneração"
+    },
+    {
+      "acronym": "IFES",
+      "date": "2026-01-15",
+      "type": "Afastamento"
+    },
+    {
+      "acronym": "IFPI",
+      "date": "2026-01-15",
+      "type": "Aposentadoria"
+    },
+    {
+      "acronym": "IFAC",
+      "date": "2026-01-15",
+      "type": "Pensão"
+    },
+    {
+      "acronym": "IFAC",
+      "date": "2026-02-06",
+      "type": "Demissão"
+    },
+    {
+      "acronym": "IFAC",
+      "date": "2026-02-06",
+      "type": "Dispensa"
+    },
+    {
+      "acronym": "IFAC",
+      "date": "2026-02-06",
+      "type": "Designação"
+    },
+    {
+      "acronym": "IFPI",
+      "date": "2026-01-15",
+      "type": "Substituição"
+    }
+  ],
+  "total_count": 105181,
+  "count_by_type_all_time": {
+    "total_afastamento": 10055,
+    "total_dispensa": 28104,
+    "total_nomeação": 13060,
+    "total_pensão": 2611,
+    "total_exoneração": 7405,
+    "total_designação": 21014,
+    "total_aposentadoria": 5775,
+    "total_demissão": 507,
+    "total_substituição": 564
+  },
+  "monthly_totals": [
+    {
+      "total": 838,
+      "year": 2018,
+      "month": "Jan"
+    },
+    {
+      "total": 904,
+      "year": 2018,
+      "month": "Fev"
+    },
+    {
+      "total": 1164,
+      "year": 2018,
+      "month": "Mar"
+    },
+    {
+      "total": 1067,
+      "year": 2018,
+      "month": "Abr"
+    },
+    {
+      "total": 960,
+      "year": 2018,
+      "month": "Mai"
+    },
+    {
+      "total": 1012,
+      "year": 2018,
+      "month": "Jun"
+    },
+    {
+      "total": 1078,
+      "year": 2018,
+      "month": "Jul"
+    },
+    {
+      "total": 1177,
+      "year": 2018,
+      "month": "Ago"
+    },
+    {
+      "total": 866,
+      "year": 2018,
+      "month": "Set"
+    },
+    {
+      "total": 961,
+      "year": 2018,
+      "month": "Out"
+    },
+    {
+      "total": 842,
+      "year": 2018,
+      "month": "Nov"
+    },
+    {
+      "total": 798,
+      "year": 2018,
+      "month": "Dez"
+    },
+    {
+      "total": 787,
+      "year": 2019,
+      "month": "Jan"
+    },
+    {
+      "total": 1112,
+      "year": 2019,
+      "month": "Fev"
+    },
+    {
+      "total": 1151,
+      "year": 2019,
+      "month": "Mar"
+    },
+    {
+      "total": 1104,
+      "year": 2019,
+      "month": "Abr"
+    },
+    {
+      "total": 1117,
+      "year": 2019,
+      "month": "Mai"
+    },
+    {
+      "total": 951,
+      "year": 2019,
+      "month": "Jun"
+    },
+    {
+      "total": 1044,
+      "year": 2019,
+      "month": "Jul"
+    },
+    {
+      "total": 1191,
+      "year": 2019,
+      "month": "Ago"
+    },
+    {
+      "total": 1187,
+      "year": 2019,
+      "month": "Set"
+    },
+    {
+      "total": 894,
+      "year": 2019,
+      "month": "Out"
+    },
+    {
+      "total": 966,
+      "year": 2019,
+      "month": "Nov"
+    },
+    {
+      "total": 1012,
+      "year": 2019,
+      "month": "Dez"
+    },
+    {
+      "total": 1043,
+      "year": 2020,
+      "month": "Jan"
+    },
+    {
+      "total": 1148,
+      "year": 2020,
+      "month": "Fev"
+    },
+    {
+      "total": 1115,
+      "year": 2020,
+      "month": "Mar"
+    },
+    {
+      "total": 552,
+      "year": 2020,
+      "month": "Abr"
+    },
+    {
+      "total": 568,
+      "year": 2020,
+      "month": "Mai"
+    },
+    {
+      "total": 484,
+      "year": 2020,
+      "month": "Jun"
+    },
+    {
+      "total": 577,
+      "year": 2020,
+      "month": "Jul"
+    },
+    {
+      "total": 595,
+      "year": 2020,
+      "month": "Ago"
+    },
+    {
+      "total": 633,
+      "year": 2020,
+      "month": "Set"
+    },
+    {
+      "total": 630,
+      "year": 2020,
+      "month": "Out"
+    },
+    {
+      "total": 647,
+      "year": 2020,
+      "month": "Nov"
+    },
+    {
+      "total": 899,
+      "year": 2020,
+      "month": "Dez"
+    },
+    {
+      "total": 699,
+      "year": 2021,
+      "month": "Jan"
+    },
+    {
+      "total": 720,
+      "year": 2021,
+      "month": "Fev"
+    },
+    {
+      "total": 1006,
+      "year": 2021,
+      "month": "Mar"
+    },
+    {
+      "total": 1231,
+      "year": 2021,
+      "month": "Abr"
+    },
+    {
+      "total": 954,
+      "year": 2021,
+      "month": "Mai"
+    },
+    {
+      "total": 822,
+      "year": 2021,
+      "month": "Jun"
+    },
+    {
+      "total": 898,
+      "year": 2021,
+      "month": "Jul"
+    },
+    {
+      "total": 992,
+      "year": 2021,
+      "month": "Ago"
+    },
+    {
+      "total": 874,
+      "year": 2021,
+      "month": "Set"
+    },
+    {
+      "total": 790,
+      "year": 2021,
+      "month": "Out"
+    },
+    {
+      "total": 755,
+      "year": 2021,
+      "month": "Nov"
+    },
+    {
+      "total": 916,
+      "year": 2021,
+      "month": "Dez"
+    },
+    {
+      "total": 865,
+      "year": 2022,
+      "month": "Jan"
+    },
+    {
+      "total": 1179,
+      "year": 2022,
+      "month": "Fev"
+    },
+    {
+      "total": 1300,
+      "year": 2022,
+      "month": "Mar"
+    },
+    {
+      "total": 1150,
+      "year": 2022,
+      "month": "Abr"
+    },
+    {
+      "total": 1278,
+      "year": 2022,
+      "month": "Mai"
+    },
+    {
+      "total": 1150,
+      "year": 2022,
+      "month": "Jun"
+    },
+    {
+      "total": 1269,
+      "year": 2022,
+      "month": "Jul"
+    },
+    {
+      "total": 1240,
+      "year": 2022,
+      "month": "Ago"
+    },
+    {
+      "total": 1078,
+      "year": 2022,
+      "month": "Set"
+    },
+    {
+      "total": 893,
+      "year": 2022,
+      "month": "Out"
+    },
+    {
+      "total": 771,
+      "year": 2022,
+      "month": "Nov"
+    },
+    {
+      "total": 926,
+      "year": 2022,
+      "month": "Dez"
+    },
+    {
+      "total": 823,
+      "year": 2023,
+      "month": "Jan"
+    },
+    {
+      "total": 1112,
+      "year": 2023,
+      "month": "Fev"
+    },
+    {
+      "total": 1343,
+      "year": 2023,
+      "month": "Mar"
+    },
+    {
+      "total": 987,
+      "year": 2023,
+      "month": "Abr"
+    },
+    {
+      "total": 1168,
+      "year": 2023,
+      "month": "Mai"
+    },
+    {
+      "total": 1299,
+      "year": 2023,
+      "month": "Jun"
+    },
+    {
+      "total": 1308,
+      "year": 2023,
+      "month": "Jul"
+    },
+    {
+      "total": 1416,
+      "year": 2023,
+      "month": "Ago"
+    },
+    {
+      "total": 1125,
+      "year": 2023,
+      "month": "Set"
+    },
+    {
+      "total": 1144,
+      "year": 2023,
+      "month": "Out"
+    },
+    {
+      "total": 1082,
+      "year": 2023,
+      "month": "Nov"
+    },
+    {
+      "total": 1217,
+      "year": 2023,
+      "month": "Dez"
+    },
+    {
+      "total": 1313,
+      "year": 2024,
+      "month": "Jan"
+    },
+    {
+      "total": 1627,
+      "year": 2024,
+      "month": "Fev"
+    },
+    {
+      "total": 1640,
+      "year": 2024,
+      "month": "Mar"
+    },
+    {
+      "total": 1523,
+      "year": 2024,
+      "month": "Abr"
+    },
+    {
+      "total": 994,
+      "year": 2024,
+      "month": "Mai"
+    },
+    {
+      "total": 1013,
+      "year": 2024,
+      "month": "Jun"
+    },
+    {
+      "total": 1589,
+      "year": 2024,
+      "month": "Jul"
+    },
+    {
+      "total": 1562,
+      "year": 2024,
+      "month": "Ago"
+    },
+    {
+      "total": 1325,
+      "year": 2024,
+      "month": "Set"
+    },
+    {
+      "total": 1326,
+      "year": 2024,
+      "month": "Out"
+    },
+    {
+      "total": 1184,
+      "year": 2024,
+      "month": "Nov"
+    },
+    {
+      "total": 1289,
+      "year": 2024,
+      "month": "Dez"
+    },
+    {
+      "total": 1546,
+      "year": 2025,
+      "month": "Jan"
+    },
+    {
+      "total": 1984,
+      "year": 2025,
+      "month": "Fev"
+    },
+    {
+      "total": 1459,
+      "year": 2025,
+      "month": "Mar"
+    },
+    {
+      "total": 1776,
+      "year": 2025,
+      "month": "Abr"
+    },
+    {
+      "total": 1561,
+      "year": 2025,
+      "month": "Mai"
+    },
+    {
+      "total": 1311,
+      "year": 2025,
+      "month": "Jun"
+    },
+    {
+      "total": 1546,
+      "year": 2025,
+      "month": "Jul"
+    },
+    {
+      "total": 1341,
+      "year": 2025,
+      "month": "Ago"
+    },
+    {
+      "total": 1372,
+      "year": 2025,
+      "month": "Set"
+    },
+    {
+      "total": 1386,
+      "year": 2025,
+      "month": "Out"
+    },
+    {
+      "total": 1070,
+      "year": 2025,
+      "month": "Nov"
+    },
+    {
+      "total": 1482,
+      "year": 2025,
+      "month": "Dez"
+    },
+    {
+      "total": 100,
+      "year": 2026,
+      "month": "Jan"
+    },
+    {
+      "total": 8,
+      "year": 2026,
+      "month": "Fev"
+    }
+  ]
+}"
+
+//Rota "periodic-types" = resposta:
+
+"{
+  "periodic_types": [
+    {
+      "date": "2025-11-20",
+      "total_acts": 0,
+      "nomeacoes": 0,
+      "exoneracoes": 0,
+      "afastamentos": 0,
+      "aposentadorias": 0,
+      "pensoes": 0,
+      "demissoes": 0,
+      "dispensas": 0,
+      "designacoes": 0,
+      "substituicoes": 0
+    },
+    {
+      "nomeacoes": 3,
+      "exoneracoes": 1,
+      "afastamentos": 7,
+      "aposentadorias": 2,
+      "pensoes": 2,
+      "demissoes": 0,
+      "dispensas": 8,
+      "designacoes": 12,
+      "substituicoes": 0,
+      "outros": 0,
+      "total_acts": 35,
+      "date": "2025-11-21"
+    },
+    {
+      "date": "2025-11-22",
+      "total_acts": 0,
+      "nomeacoes": 0,
+      "exoneracoes": 0,
+      "afastamentos": 0,
+      "aposentadorias": 0,
+      "pensoes": 0,
+      "demissoes": 0,
+      "dispensas": 0,
+      "designacoes": 0,
+      "substituicoes": 0
+    }}]"
+
+//Rota "institutes-overview" = resposta:
+
+"{
+  "institutes_overview": [
+    {
+      "nomeacoes": 3,
+      "exoneracoes": 3,
+      "afastamentos": 0,
+      "aposentadorias": 1,
+      "pensoes": 2,
+      "demissoes": 0,
+      "dispensas": 17,
+      "designacoes": 8,
+      "substituicoes": 0,
+      "acronym": "IFPB",
+      "institute": "Instituto Federal da Paraíba",
+      "year": 2025,
+      "month": "Fev"
+    },
+    {
+      "nomeacoes": 0,
+      "exoneracoes": 0,
+      "afastamentos": 1,
+      "aposentadorias": 0,
+      "pensoes": 0,
+      "demissoes": 0,
+      "dispensas": 5,
+      "designacoes": 2,
+      "substituicoes": 0,
+      "acronym": "IFAP",
+      "institute": "Instituto Federal do Amapá",
+      "year": 2019,
+      "month": "Jul"
+    },
+    {
+      "nomeacoes": 1,
+      "exoneracoes": 1,
+      "afastamentos": 0,
+      "aposentadorias": 3,
+      "pensoes": 0,
+      "demissoes": 0,
+      "dispensas": 7,
+      "designacoes": 9,
+      "substituicoes": 0,
+      "acronym": "IFBA",
+      "institute": "Instituto Federal da Bahia",
+      "year": 2020,
+      "month": "Nov"
+    },
+    {
+      "nomeacoes": 0,
+      "exoneracoes": 1,
+      "afastamentos": 1,
+      "aposentadorias": 0,
+      "pensoes": 2,
+      "demissoes": 0,
+      "dispensas": 4,
+      "designacoes": 2,
+      "substituicoes": 0,
+      "acronym": "IFPB",
+      "institute": "Instituto Federal da Paraíba",
+      "year": 2024,
+      "month": "Dez"
+    }}
+    "
+
+
+//Rota "top-personnel" = resposta:
+
+"{
+  "tops_personnel": [
+    {
+      "nomeacoes": 108,
+      "exoneracoes": 92,
+      "afastamentos": 122,
+      "aposentadorias": 29,
+      "pensoes": 3,
+      "demissoes": 1,
+      "dispensas": 244,
+      "designacoes": 346,
+      "substituicoes": 0,
+      "total_acts": 945,
+      "responsible": "SILMARIO BATISTA DOS SANTOS",
+      "acronym": "IFSP",
+      "responsible_institute": "SILMARIO BATISTA DOS SANTOS - IFSP"
+    },
+    {
+      "nomeacoes": 75,
+      "exoneracoes": 66,
+      "afastamentos": 26,
+      "aposentadorias": 24,
+      "pensoes": 6,
+      "demissoes": 1,
+      "dispensas": 202,
+      "designacoes": 52,
+      "substituicoes": 0,
+      "total_acts": 452,
+      "responsible": "JULIO CESAR DOS SANTOS",
+      "acronym": "IFMT",
+      "responsible_institute": "JULIO CESAR DOS SANTOS - IFMT"
+    },
+    {
+      "nomeacoes": 44,
+      "exoneracoes": 35,
+      "afastamentos": 0,
+      "aposentadorias": 20,
+      "pensoes": 12,
+      "demissoes": 0,
+      "dispensas": 117,
+      "designacoes": 166,
+      "substituicoes": 0,
+      "total_acts": 394,
+      "responsible": "LUZIA MATOS MOTA",
+      "acronym": "IFBA",
+      "responsible_institute": "LUZIA MATOS MOTA - IFBA"
+    },
+    {
+      "nomeacoes": 35,
+      "exoneracoes": 15,
+      "afastamentos": 38,
+      "aposentadorias": 3,
+      "pensoes": 0,
+      "demissoes": 0,
+      "dispensas": 109,
+      "designacoes": 141,
+      "substituicoes": 0,
+      "total_acts": 341,
+      "responsible": "VERUSKA RIBEIRO MACHADO",
+      "acronym": "IFB",
+      "responsible_institute": "VERUSKA RIBEIRO MACHADO - IFB"
+    },
+    {
+      "nomeacoes": 129,
+      "exoneracoes": 14,
+      "afastamentos": 14,
+      "aposentadorias": 5,
+      "pensoes": 7,
+      "demissoes": 0,
+      "dispensas": 107,
+      "designacoes": 57,
+      "substituicoes": 1,
+      "total_acts": 334,
+      "responsible": "PAULO BORGES DA CUNHA",
+      "acronym": "IFPI",
+      "responsible_institute": "PAULO BORGES DA CUNHA - IFPI"
+    },
+    {
+      "nomeacoes": 68,
+      "exoneracoes": 33,
+      "afastamentos": 11,
+      "aposentadorias": 13,
+      "pensoes": 3,
+      "demissoes": 0,
+      "dispensas": 71,
+      "designacoes": 111,
+      "substituicoes": 0,
+      "total_acts": 310,
+      "responsible": "VALDIR JOSÉ DA SILVA",
+      "acronym": "IF Sudeste MG",
+      "responsible_institute": "VALDIR JOSÉ DA SILVA - IF Sudeste MG"
+    },
+    {
+      "nomeacoes": 29,
+      "exoneracoes": 19,
+      "afastamentos": 9,
+      "aposentadorias": 8,
+      "pensoes": 5,
+      "demissoes": 0,
+      "dispensas": 51,
+      "designacoes": 188,
+      "substituicoes": 0,
+      "total_acts": 309,
+      "responsible": "JAIME CAVALCANTE ALVES",
+      "acronym": "IFAM",
+      "responsible_institute": "JAIME CAVALCANTE ALVES - IFAM"
+    }}"
+
+
+//Rota "region-totals" = resposta:
+
+"{
+  "region_totals": [
+    {
+      "nomeacoes": 151,
+      "exoneracoes": 110,
+      "afastamentos": 357,
+      "aposentadorias": 62,
+      "pensoes": 15,
+      "demissoes": 11,
+      "dispensas": 459,
+      "designacoes": 376,
+      "substituicoes": 2,
+      "outros": 136,
+      "total_acts": 1679,
+      "name": "Centro-Oeste",
+      "region": "centro-oeste",
+      "year": 2018
+    },
+    {
+      "nomeacoes": 291,
+      "exoneracoes": 178,
+      "afastamentos": 343,
+      "aposentadorias": 232,
+      "pensoes": 101,
+      "demissoes": 18,
+      "dispensas": 954,
+      "designacoes": 555,
+      "substituicoes": 43,
+      "outros": 258,
+      "total_acts": 2973,
+      "name": "Nordeste",
+      "region": "nordeste",
+      "year": 2018
+    },
+    {
+      "nomeacoes": 454,
+      "exoneracoes": 160,
+      "afastamentos": 230,
+      "aposentadorias": 58,
+      "pensoes": 42,
+      "demissoes": 6,
+      "dispensas": 728,
+      "designacoes": 391,
+      "substituicoes": 9,
+      "outros": 282,
+      "total_acts": 2360,
+      "name": "Norte",
+      "region": "norte",
+      "year": 2018
+    },
+    {
+      "nomeacoes": 356,
+      "exoneracoes": 120,
+      "afastamentos": 575,
+      "aposentadorias": 261,
+      "pensoes": 96,
+      "demissoes": 9,
+      "dispensas": 575,
+      "designacoes": 224,
+      "substituicoes": 1,
+      "outros": 254,
+      "total_acts": 2471,
+      "name": "Sudeste",
+      "region": "sudeste",
+      "year": 2018
+    },
+    {
+      "nomeacoes": 240,
+      "exoneracoes": 114,
+      "afastamentos": 298,
+      "aposentadorias": 125,
+      "pensoes": 42,
+      "demissoes": 10,
+      "dispensas": 618,
+      "designacoes": 255,
+      "substituicoes": 0,
+      "outros": 261,
+      "total_acts": 1963,
+      "name": "Sul",
+      "region": "sul",
+      "year": 2018
+    },
+    {
+      "nomeacoes": 212,
+      "exoneracoes": 100,
+      "afastamentos": 239,
+      "aposentadorias": 88,
+      "pensoes": 15,
+      "demissoes": 5,
+      "dispensas": 459,
+      "designacoes": 391,
+      "substituicoes": 1,
+      "outros": 127,
+      "total_acts": 1637,
+      "name": "Centro-Oeste",
+      "region": "centro-oeste",
+      "year": 2019
+    },
+    {
+      "nomeacoes": 448,
+      "exoneracoes": 229,
+      "afastamentos": 333,
+      "aposentadorias": 389,
+      "pensoes": 161,
+      "demissoes": 20,
+      "dispensas": 1127,
+      "designacoes": 651,
+      "substituicoes": 52,
+      "outros": 297,
+      "total_acts": 3707,
+      "name": "Nordeste",
+      "region": "nordeste",
+      "year": 2019
+    },
+    {
+      "nomeacoes": 446,
+      "exoneracoes": 204,
+      "afastamentos": 226,
+      "aposentadorias": 106,
+      "pensoes": 36,
+      "demissoes": 9,
+      "dispensas": 755,
+      "designacoes": 430,
+      "substituicoes": 7,
+      "outros": 231,
+      "total_acts": 2450,
+      "name": "Norte",
+      "region": "norte",
+      "year": 2019
+    },
+    {
+      "nomeacoes": 390,
+      "exoneracoes": 179,
+      "afastamentos": 504,
+      "aposentadorias": 372,
+      "pensoes": 83,
+      "demissoes": 12,
+      "dispensas": 575,
+      "designacoes": 235,
+      "substituicoes": 0,
+      "outros": 276,
+      "total_acts": 2626,
+      "name": "Sudeste",
+      "region": "sudeste",
+      "year": 2019
+    },
+    {
+      "nomeacoes": 217,
+      "exoneracoes": 103,
+      "afastamentos": 296,
+      "aposentadorias": 157,
+      "pensoes": 32,
+      "demissoes": 7,
+      "dispensas": 543,
+      "designacoes": 200,
+      "substituicoes": 1,
+      "outros": 329,
+      "total_acts": 1885,
+      "name": "Sul",
+      "region": "sul",
+      "year": 2019
+    },
+    {
+      "nomeacoes": 124,
+      "exoneracoes": 112,
+      "afastamentos": 69,
+      "aposentadorias": 43,
+      "pensoes": 26,
+      "demissoes": 5,
+      "dispensas": 356,
+      "designacoes": 316,
+      "substituicoes": 0,
+      "outros": 137,
+      "total_acts": 1188,
+      "name": "Centro-Oeste",
+      "region": "centro-oeste",
+      "year": 2020
+    },
+    {
+      "nomeacoes": 442,
+      "exoneracoes": 302,
+      "afastamentos": 93,
+      "aposentadorias": 182,
+      "pensoes": 119,
+      "demissoes": 19,
+      "dispensas": 833,
+      "designacoes": 574,
+      "substituicoes": 9,
+      "outros": 322,
+      "total_acts": 2895,
+      "name": "Nordeste",
+      "region": "nordeste",
+      "year": 2020
+    },
+    {
+      "nomeacoes": 224,
+      "exoneracoes": 127,
+      "afastamentos": 88,
+      "aposentadorias": 79,
+      "pensoes": 43,
+      "demissoes": 7,
+      "dispensas": 603,
+      "designacoes": 396,
+      "substituicoes": 7,
+      "outros": 247,
+      "total_acts": 1821,
+      "name": "Norte",
+      "region": "norte",
+      "year": 2020
+    },
+    {
+      "nomeacoes": 171,
+      "exoneracoes": 114,
+      "afastamentos": 133,
+      "aposentadorias": 130,
+      "pensoes": 95,
+      "demissoes": 7,
+      "dispensas": 543,
+      "designacoes": 267,
+      "substituicoes": 1,
+      "outros": 210,
+      "total_acts": 1671,
+      "name": "Sudeste",
+      "region": "sudeste",
+      "year": 2020
+    },
+    {
+      "nomeacoes": 117,
+      "exoneracoes": 107,
+      "afastamentos": 68,
+      "aposentadorias": 77,
+      "pensoes": 23,
+      "demissoes": 3,
+      "dispensas": 424,
+      "designacoes": 185,
+      "substituicoes": 0,
+      "outros": 222,
+      "total_acts": 1226,
+      "name": "Sul",
+      "region": "sul",
+      "year": 2020
+    },
+    {
+      "nomeacoes": 153,
+      "exoneracoes": 138,
+      "afastamentos": 75,
+      "aposentadorias": 45,
+      "pensoes": 30,
+      "demissoes": 5,
+      "dispensas": 392,
+      "designacoes": 373,
+      "substituicoes": 0,
+      "outros": 156,
+      "total_acts": 1367,
+      "name": "Centro-Oeste",
+      "region": "centro-oeste",
+      "year": 2021
+    },
+    {
+      "nomeacoes": 416,
+      "exoneracoes": 247,
+      "afastamentos": 116,
+      "aposentadorias": 293,
+      "pensoes": 159,
+      "demissoes": 15,
+      "dispensas": 792,
+      "designacoes": 563,
+      "substituicoes": 19,
+      "outros": 380,
+      "total_acts": 3000,
+      "name": "Nordeste",
+      "region": "nordeste",
+      "year": 2021
+    },
+    {
+      "nomeacoes": 261,
+      "exoneracoes": 130,
+      "afastamentos": 51,
+      "aposentadorias": 59,
+      "pensoes": 79,
+      "demissoes": 18,
+      "dispensas": 469,
+      "designacoes": 394,
+      "substituicoes": 5,
+      "outros": 189,
+      "total_acts": 1655,
+      "name": "Norte",
+      "region": "norte",
+      "year": 2021
+    },
+    {
+      "nomeacoes": 290,
+      "exoneracoes": 247,
+      "afastamentos": 119,
+      "aposentadorias": 123,
+      "pensoes": 84,
+      "demissoes": 14,
+      "dispensas": 745,
+      "designacoes": 974,
+      "substituicoes": 0,
+      "outros": 331,
+      "total_acts": 2927,
+      "name": "Sudeste",
+      "region": "sudeste",
+      "year": 2021
+    },
+    {
+      "nomeacoes": 94,
+      "exoneracoes": 85,
+      "afastamentos": 92,
+      "aposentadorias": 64,
+      "pensoes": 42,
+      "demissoes": 14,
+      "dispensas": 555,
+      "designacoes": 208,
+      "substituicoes": 0,
+      "outros": 368,
+      "total_acts": 1522,
+      "name": "Sul",
+      "region": "sul",
+      "year": 2021
+    },
+    {
+      "nomeacoes": 172,
+      "exoneracoes": 136,
+      "afastamentos": 160,
+      "aposentadorias": 65,
+      "pensoes": 24,
+      "demissoes": 10,
+      "dispensas": 536,
+      "designacoes": 474,
+      "substituicoes": 9,
+      "outros": 288,
+      "total_acts": 1874,
+      "name": "Centro-Oeste",
+      "region": "centro-oeste",
+      "year": 2022
+    },
+    {
+      "nomeacoes": 432,
+      "exoneracoes": 307,
+      "afastamentos": 229,
+      "aposentadorias": 249,
+      "pensoes": 159,
+      "demissoes": 16,
+      "dispensas": 1017,
+      "designacoes": 700,
+      "substituicoes": 65,
+      "outros": 421,
+      "total_acts": 3595,
+      "name": "Nordeste",
+      "region": "nordeste",
+      "year": 2022
+    },
+    {
+      "nomeacoes": 360,
+      "exoneracoes": 156,
+      "afastamentos": 90,
+      "aposentadorias": 74,
+      "pensoes": 29,
+      "demissoes": 12,
+      "dispensas": 539,
+      "designacoes": 479,
+      "substituicoes": 10,
+      "outros": 523,
+      "total_acts": 2272,
+      "name": "Norte",
+      "region": "norte",
+      "year": 2022
+    },
+    {
+      "nomeacoes": 317,
+      "exoneracoes": 239,
+      "afastamentos": 438,
+      "aposentadorias": 244,
+      "pensoes": 74,
+      "demissoes": 18,
+      "dispensas": 825,
+      "designacoes": 682,
+      "substituicoes": 0,
+      "outros": 366,
+      "total_acts": 3203,
+      "name": "Sudeste",
+      "region": "sudeste",
+      "year": 2022
+    },
+    {
+      "nomeacoes": 239,
+      "exoneracoes": 117,
+      "afastamentos": 154,
+      "aposentadorias": 117,
+      "pensoes": 26,
+      "demissoes": 13,
+      "dispensas": 582,
+      "designacoes": 304,
+      "substituicoes": 0,
+      "outros": 346,
+      "total_acts": 1898,
+      "name": "Sul",
+      "region": "sul",
+      "year": 2022
+    },
+    {
+      "nomeacoes": 222,
+      "exoneracoes": 174,
+      "afastamentos": 184,
+      "aposentadorias": 100,
+      "pensoes": 24,
+      "demissoes": 5,
+      "dispensas": 511,
+      "designacoes": 435,
+      "substituicoes": 0,
+      "outros": 355,
+      "total_acts": 2010,
+      "name": "Centro-Oeste",
+      "region": "centro-oeste",
+      "year": 2023
+    },
+    {
+      "nomeacoes": 410,
+      "exoneracoes": 317,
+      "afastamentos": 266,
+      "aposentadorias": 245,
+      "pensoes": 108,
+      "demissoes": 21,
+      "dispensas": 1049,
+      "designacoes": 693,
+      "substituicoes": 71,
+      "outros": 503,
+      "total_acts": 3683,
+      "name": "Nordeste",
+      "region": "nordeste",
+      "year": 2023
+    },
+    {
+      "nomeacoes": 309,
+      "exoneracoes": 187,
+      "afastamentos": 111,
+      "aposentadorias": 39,
+      "pensoes": 28,
+      "demissoes": 14,
+      "dispensas": 538,
+      "designacoes": 653,
+      "substituicoes": 14,
+      "outros": 510,
+      "total_acts": 2403,
+      "name": "Norte",
+      "region": "norte",
+      "year": 2023
+    },
+    {
+      "nomeacoes": 361,
+      "exoneracoes": 213,
+      "afastamentos": 574,
+      "aposentadorias": 207,
+      "pensoes": 88,
+      "demissoes": 21,
+      "dispensas": 838,
+      "designacoes": 656,
+      "substituicoes": 2,
+      "outros": 438,
+      "total_acts": 3398,
+      "name": "Sudeste",
+      "region": "sudeste",
+      "year": 2023
+    },
+    {
+      "nomeacoes": 382,
+      "exoneracoes": 120,
+      "afastamentos": 213,
+      "aposentadorias": 88,
+      "pensoes": 22,
+      "demissoes": 22,
+      "dispensas": 570,
+      "designacoes": 373,
+      "substituicoes": 0,
+      "outros": 359,
+      "total_acts": 2149,
+      "name": "Sul",
+      "region": "sul",
+      "year": 2023
+    },
+    {
+      "nomeacoes": 172,
+      "exoneracoes": 148,
+      "afastamentos": 174,
+      "aposentadorias": 60,
+      "pensoes": 21,
+      "demissoes": 6,
+      "dispensas": 451,
+      "designacoes": 419,
+      "substituicoes": 0,
+      "outros": 326,
+      "total_acts": 1777,
+      "name": "Centro-Oeste",
+      "region": "centro-oeste",
+      "year": 2024
+    },
+    {
+      "nomeacoes": 331,
+      "exoneracoes": 302,
+      "afastamentos": 218,
+      "aposentadorias": 115,
+      "pensoes": 91,
+      "demissoes": 21,
+      "dispensas": 958,
+      "designacoes": 833,
+      "substituicoes": 2,
+      "outros": 569,
+      "total_acts": 3440,
+      "name": "Nordeste",
+      "region": "nordeste",
+      "year": 2024
+    },
+    {
+      "nomeacoes": 599,
+      "exoneracoes": 212,
+      "afastamentos": 229,
+      "aposentadorias": 128,
+      "pensoes": 60,
+      "demissoes": 16,
+      "dispensas": 871,
+      "designacoes": 978,
+      "substituicoes": 145,
+      "outros": 1063,
+      "total_acts": 4301,
+      "name": "Norte",
+      "region": "norte",
+      "year": 2024
+    },
+    {
+      "nomeacoes": 286,
+      "exoneracoes": 176,
+      "afastamentos": 729,
+      "aposentadorias": 192,
+      "pensoes": 77,
+      "demissoes": 5,
+      "dispensas": 866,
+      "designacoes": 654,
+      "substituicoes": 0,
+      "outros": 603,
+      "total_acts": 3588,
+      "name": "Sudeste",
+      "region": "sudeste",
+      "year": 2024
+    },
+    {
+      "nomeacoes": 429,
+      "exoneracoes": 236,
+      "afastamentos": 208,
+      "aposentadorias": 89,
+      "pensoes": 30,
+      "demissoes": 6,
+      "dispensas": 724,
+      "designacoes": 491,
+      "substituicoes": 0,
+      "outros": 641,
+      "total_acts": 2854,
+      "name": "Sul",
+      "region": "sul",
+      "year": 2024
+    },
+    {
+      "nomeacoes": 207,
+      "exoneracoes": 178,
+      "afastamentos": 180,
+      "aposentadorias": 78,
+      "pensoes": 28,
+      "demissoes": 8,
+      "dispensas": 576,
+      "designacoes": 426,
+      "substituicoes": 1,
+      "outros": 304,
+      "total_acts": 1986,
+      "name": "Centro-Oeste",
+      "region": "centro-oeste",
+      "year": 2025
+    },
+    {
+      "nomeacoes": 916,
+      "exoneracoes": 335,
+      "afastamentos": 366,
+      "aposentadorias": 210,
+      "pensoes": 123,
+      "demissoes": 27,
+      "dispensas": 1236,
+      "designacoes": 852,
+      "substituicoes": 59,
+      "outros": 761,
+      "total_acts": 4885,
+      "name": "Nordeste",
+      "region": "nordeste",
+      "year": 2025
+    },
+    {
+      "nomeacoes": 343,
+      "exoneracoes": 198,
+      "afastamentos": 126,
+      "aposentadorias": 54,
+      "pensoes": 14,
+      "demissoes": 6,
+      "dispensas": 571,
+      "designacoes": 893,
+      "substituicoes": 22,
+      "outros": 531,
+      "total_acts": 2758,
+      "name": "Norte",
+      "region": "norte",
+      "year": 2025
+    },
+    {
+      "nomeacoes": 423,
+      "exoneracoes": 263,
+      "afastamentos": 728,
+      "aposentadorias": 257,
+      "pensoes": 105,
+      "demissoes": 14,
+      "dispensas": 886,
+      "designacoes": 879,
+      "substituicoes": 0,
+      "outros": 687,
+      "total_acts": 4242,
+      "name": "Sudeste",
+      "region": "sudeste",
+      "year": 2025
+    },
+    {
+      "nomeacoes": 298,
+      "exoneracoes": 102,
+      "afastamentos": 276,
+      "aposentadorias": 114,
+      "pensoes": 55,
+      "demissoes": 21,
+      "dispensas": 656,
+      "designacoes": 448,
+      "substituicoes": 2,
+      "outros": 1189,
+      "total_acts": 3161,
+      "name": "Sul",
+      "region": "sul",
+      "year": 2025
+    },
+    {
+      "nomeacoes": 0,
+      "exoneracoes": 0,
+      "afastamentos": 0,
+      "aposentadorias": 0,
+      "pensoes": 0,
+      "demissoes": 0,
+      "dispensas": 0,
+      "designacoes": 0,
+      "substituicoes": 0,
+      "outros": 2,
+      "total_acts": 2,
+      "name": "Centro-Oeste",
+      "region": "centro-oeste",
+      "year": 2026
+    },
+    {
+      "nomeacoes": 10,
+      "exoneracoes": 3,
+      "afastamentos": 10,
+      "aposentadorias": 1,
+      "pensoes": 3,
+      "demissoes": 2,
+      "dispensas": 4,
+      "designacoes": 5,
+      "substituicoes": 5,
+      "outros": 3,
+      "total_acts": 46,
+      "name": "Nordeste",
+      "region": "nordeste",
+      "year": 2026
+    },
+    {
+      "nomeacoes": 4,
+      "exoneracoes": 3,
+      "afastamentos": 1,
+      "aposentadorias": 2,
+      "pensoes": 2,
+      "demissoes": 1,
+      "dispensas": 2,
+      "designacoes": 6,
+      "substituicoes": 0,
+      "outros": 5,
+      "total_acts": 26,
+      "name": "Norte",
+      "region": "norte",
+      "year": 2026
+    },
+    {
+      "nomeacoes": 1,
+      "exoneracoes": 3,
+      "afastamentos": 4,
+      "aposentadorias": 0,
+      "pensoes": 2,
+      "demissoes": 1,
+      "dispensas": 3,
+      "designacoes": 13,
+      "substituicoes": 0,
+      "outros": 1,
+      "total_acts": 28,
+      "name": "Sudeste",
+      "region": "sudeste",
+      "year": 2026
+    },
+    {
+      "nomeacoes": 1,
+      "exoneracoes": 0,
+      "afastamentos": 0,
+      "aposentadorias": 0,
+      "pensoes": 0,
+      "demissoes": 0,
+      "dispensas": 1,
+      "designacoes": 0,
+      "substituicoes": 0,
+      "outros": 2,
+      "total_acts": 4,
+      "name": "Sul",
+      "region": "sul",
+      "year": 2026
+    }
+  ]
+"
+
+
+//Rota "states-totals" = resposta:
+
+"{
+  "state_totals": [
+    {
+      "nomeacoes": 61,
+      "exoneracoes": 30,
+      "afastamentos": 31,
+      "aposentadorias": 1,
+      "pensoes": 1,
+      "demissoes": 3,
+      "dispensas": 52,
+      "designacoes": 21,
+      "substituicoes": 0,
+      "outros": 36,
+      "total_acts": 236,
+      "uf": "AC",
+      "state_name": "Acre",
+      "year": 2018
+    },
+    {
+      "nomeacoes": 36,
+      "exoneracoes": 20,
+      "afastamentos": 39,
+      "aposentadorias": 29,
+      "pensoes": 11,
+      "demissoes": 0,
+      "dispensas": 24,
+      "designacoes": 29,
+      "substituicoes": 0,
+      "outros": 20,
+      "total_acts": 208,
+      "uf": "AL",
+      "state_name": "Alagoas",
+      "year": 2018
+    },
+    {
+      "nomeacoes": 58,
+      "exoneracoes": 29,
+      "afastamentos": 58,
+      "aposentadorias": 20,
+      "pensoes": 15,
+      "demissoes": 0,
+      "dispensas": 173,
+      "designacoes": 64,
+      "substituicoes": 0,
+      "outros": 125,
+      "total_acts": 542,
+      "uf": "AM",
+      "state_name": "Amazonas",
+      "year": 2018
+    },
+    {
+      "nomeacoes": 26,
+      "exoneracoes": 9,
+      "afastamentos": 9,
+      "aposentadorias": 1,
+      "pensoes": 1,
+      "demissoes": 0,
+      "dispensas": 80,
+      "designacoes": 39,
+      "substituicoes": 0,
+      "outros": 17,
+      "total_acts": 182,
+      "uf": "AP",
+      "state_name": "Amapá",
+      "year": 2018
+    },
+    {
+      "nomeacoes": 62,
+      "exoneracoes": 26,
+      "afastamentos": 16,
+      "aposentadorias": 24,
+      "pensoes": 28,
+      "demissoes": 2,
+      "dispensas": 192,
+      "designacoes": 165,
+      "substituicoes": 0,
+      "outros": 37,
+      "total_acts": 552,
+      "uf": "BA",
+      "state_name": "Bahia",
+      "year": 2018
+    },
+    {
+      "nomeacoes": 5,
+      "exoneracoes": 32,
+      "afastamentos": 80,
+      "aposentadorias": 30,
+      "pensoes": 9,
+      "demissoes": 2,
+      "dispensas": 126,
+      "designacoes": 65,
+      "substituicoes": 0,
+      "outros": 19,
+      "total_acts": 368,
+      "uf": "CE",
+      "state_name": "Ceará",
+      "year": 2018
+    },
+    {
+      "nomeacoes": 27,
+      "exoneracoes": 32,
+      "afastamentos": 214,
+      "aposentadorias": 4,
+      "pensoes": 1,
+      "demissoes": 3,
+      "dispensas": 128,
+      "designacoes": 222,
+      "substituicoes": 0,
+      "outros": 29,
+      "total_acts": 660,
+      "uf": "DF",
+      "state_name": "Distrito Federal",
+      "year": 2018
+    },
+    {
+      "nomeacoes": 26,
+      "exoneracoes": 8,
+      "afastamentos": 214,
+      "aposentadorias": 122,
+      "pensoes": 32,
+      "demissoes": 0,
+      "dispensas": 75,
+      "designacoes": 25,
+      "substituicoes": 0,
+      "outros": 28,
+      "total_acts": 530,
+      "uf": "ES",
+      "state_name": "Espírito Santo",
+      "year": 2018
+    }}"
+
+
+//Rota "years" = resposta:
+
+"{
+  "years": [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026]
+}"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
