@@ -124,7 +124,7 @@ class StatesController:
             "state_totals": state_totals
         }
         
-class YearsController:
+class FiltersController:
     """
     Controlador para anos disponíveis (para filtros).
     """
@@ -132,11 +132,15 @@ class YearsController:
     def __init__(self, dashboard_dao: DashboardDAO):
         self.dash = dashboard_dao
         
-    async def get_available_years_controller(self):
-        # Retorno dos anos disponíveis para filtros
+    async def get_filters_metadata_controller(self):
+        # Retorno dos anos disponíveis para filtros available
         
         years = await self.dash.get_available_years()
+        types = await self.dash.get_available_types()
+        institutes = await self.dash.get_available_institutes()
         
         return {
+            "types": types,
+            "institutes": institutes,
             "years": years
         }

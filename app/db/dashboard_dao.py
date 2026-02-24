@@ -554,6 +554,24 @@ class DashboardDAO:
     async def get_publication_count(self):
         """Item 6: Total geral."""
         return await self.colletion.count_documents({})
+    
+    async def get_available_types(self):
+        """
+        Retorna uma lista de todos os tipos de atos únicos presentes na coleção.
+        Útil para preencher filtros de busca no frontend.
+        """
+        # O método distinct retorna uma lista com os valores únicos do campo 'type'
+        types = await self.colletion.distinct("type")
+        # Ordena alfabeticamente para melhor experiência do usuário
+        return sorted([t for t in types if t])
+
+    async def get_available_institutes(self):
+        """
+        Retorna uma lista de todas as siglas (acronym) de institutos únicas.
+        """
+        acronyms = await self.colletion.distinct("acronym")
+        # Filtra valores nulos e ordena
+        return sorted([a for a in acronyms if a])
 
     async def get_available_years(self):
         """Item 7: Anos distintos."""
