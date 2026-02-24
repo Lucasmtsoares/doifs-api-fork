@@ -1,20 +1,29 @@
 from app.db.dashboard_dao import DashboardDAO
 from app.db.publication_dao import PublicationDAO
+from app.models.publication import Publication
 
 class PublicationController:
-    """
-    Controlador responsável pela busca textual e filtrada de publicações.
-    """
-    def __init__(self, publication_dao: PublicationDAO):
-        self.publication = publication_dao
+    def __init__(self, pub_dao):
+        self.dao = pub_dao
+
+    async def get_publication_controller(self, params: dict):
+        """
+        Recebe o dicionário vindo da Rota (GET ou POST) e 
+        converte no modelo Publication esperado pelo DAO.
+        """
+        # Cria a instância do modelo Publication (Validação inicial automática do Pydantic)
+        search_model = Publication(
+            name=params.get("name"),
+            type=params.get("type"),
+            acronym=params.get("acronym"),
+            year=params.get("year")
+        )
         
-    async def get_publication_controller(self, publication):
-        # Utiliza o método de busca do PublicationDAO
-        publications, count = await self.publication.get_publication(publication)
-        print("Controller: Busca de publicações concluída.")
+        results, total = await self.dao.get_publication(search_model)
+        
         return {
-            "publications": publications,
-            "count": count
+            "publications": results,
+            "count": total
         }
 
 class SummaryController:

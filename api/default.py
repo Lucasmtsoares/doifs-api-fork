@@ -1,8 +1,8 @@
 from dotenv import load_dotenv
 import os
 from contextlib import asynccontextmanager
-from fastapi import FastAPI, HTTPException, Body
-from typing import AsyncGenerator, Any
+from fastapi import FastAPI, HTTPException, Body, Query
+from typing import AsyncGenerator, Any, Optional
 from fastapi.middleware.cors import CORSMiddleware
 
 # Importações internas
@@ -65,11 +65,24 @@ def get_ctrl(name: str):
 
 # --- ROTAS ---
 
-@app.post("/buscar", response_model=None)
-async def buscar_publicacoes(publication: Any = Body(...)):
-    """Rota de busca textual e filtrada."""
+@app.get("/buscar", response_model=None)
+async def buscar_publicacoes(
+    name: Optional[str] = Query(None),
+    type: Optional[str] = Query(None),
+    acronym: Optional[str] = Query(None)
+    ):
+    """
+    Rota de busca corrigida para GET. 
+    Recebe os parâmetros da URL (Ex: /buscar?name=Jose+Silva)
+    """
+    # Monta o dicionário que o PublicationController espera
+    search_params = {}
+    if name: search_params["name"] = name
+    if type: search_params["type"] = type
+    if acronym: search_params["acronym"] = acronym
+    
     ctrl = get_ctrl('publication_controller')
-    return await ctrl.get_publication_controller(publication)
+    return await ctrl.get_publication_controller(search_params)
 
 @app.get("/get-totals") # Ok ----
 async def get_totals():
