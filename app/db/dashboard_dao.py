@@ -575,4 +575,6 @@ class DashboardDAO:
 
     async def get_available_years(self):
         """Item 7: Anos distintos."""
-        return await self.colletion.distinct("year")
+        years = await self.colletion.distinct("year")
+        
+        return sorted([y for y in years if y], reverse=True)
