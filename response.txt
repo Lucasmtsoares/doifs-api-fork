@@ -1046,3 +1046,51 @@ async def get_state_totals(self):
     import uvicorn
     port = int(os.getenv("PORT", 8000))
     uvicorn.run(app, host="0.0.0.0", port=port)
+
+
+Proximas Tarefas:
+1. Corrigir o campo input
+2. Corrigir acentuação regex
+3. Padronizar cores e fontes 
+4. Ajustar cabeçalho
+5. responsividade
+
+
+
+------------
+
+"count_by_type_all_time": {
+    "total_afastamento": 10 055,         - 4
+    "total_exoneração": 7 405,           - 5
+    "total_pensão": 2 611,               - 7
+    "total_dispensa": 28 104,            - 1
+    "total_aposentadoria": 5 775,        - 6
+    "total_substituição": 564,           - 8
+    "total_nomeação": 13 060,            - 3
+    "total_demissão": 507,               - 9
+    "total_designação": 21 014           - 2
+  }
+
+  1 - Dispensa (28 104)
+  2 - Designação (21 014)
+  3 - Nomeação (13 060)
+  4 - Afastamento (10 055)
+  5 - Exoneração (7 405)
+  6 - Aposentadoria (5 775)
+  7 - Pensão (2 611)
+  8 - Substitução (564)
+  9 - Demissão (507)
+
+
+  ----
+
+  1 - Dispensa 
+  2 - Designação 
+  3 - Nomeação
+  4 - Afastamento 
+  5 - Exoneração 
+  6 - Aposentadoria 
+  7 - Pensão 
+  8 - Substitução 
+  9 - Demissão 
+

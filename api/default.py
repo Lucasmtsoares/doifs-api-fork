@@ -69,7 +69,8 @@ def get_ctrl(name: str):
 async def buscar_publicacoes(
     name: Optional[str] = Query(None),
     type: Optional[str] = Query(None),
-    acronym: Optional[str] = Query(None)
+    acronym: Optional[str] = Query(None),
+    year: Optional[int] = Query(None)
     ):
     """
     Rota de busca corrigida para GET. 
@@ -80,6 +81,7 @@ async def buscar_publicacoes(
     if name: search_params["name"] = name
     if type: search_params["type"] = type
     if acronym: search_params["acronym"] = acronym
+    if year: search_params["year"] = year
     
     ctrl = get_ctrl('publication_controller')
     return await ctrl.get_publication_controller(search_params)
