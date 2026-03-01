@@ -1049,11 +1049,11 @@ async def get_state_totals(self):
 
 
 Proximas Tarefas:
-1. Corrigir o campo input
-2. Corrigir acentuação regex
-3. Padronizar cores e fontes 
-4. Ajustar cabeçalho
-5. responsividade
+1. Corrigir o campo input <
+2. Corrigir acentuação regex ?
+3. Padronizar cores e fontes ?
+4. Ajustar cabeçalho ?
+5. responsividade ?
 
 
 
