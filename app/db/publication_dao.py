@@ -36,8 +36,8 @@ class PublicationDAO:
                 match_query["acronym"] = publication.acronym
                 
         if is_valid_param(publication.name):
-                search_pattern_ = re.escape(publication.name)
-                search_pattern = self._normalize_text(search_pattern_)
+                search_pattern_ = await self._normalize_text(publication.name)
+                search_pattern = re.escape(search_pattern_)
                 match_query["content"] = {
                     "$regex": search_pattern,
                     "$options": "i"
@@ -88,7 +88,7 @@ class PublicationDAO:
                 
         return res, total_count
 
-    async def _normalize_text(text: str) -> str:
+    async def _normalize_text(self, text: str) -> str:
         """
         Normaliza o texto: 
         1. Converte para minúsculas
@@ -109,6 +109,5 @@ class PublicationDAO:
         
         # Remover espaços em branco extras e quebras de linha
         text_normalized = " ".join(text_normalized.split())
-        
         return text_normalized
             
