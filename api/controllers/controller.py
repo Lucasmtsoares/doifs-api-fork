@@ -40,13 +40,15 @@ class SummaryController:
         total_count = await self.dash.get_publication_count()
         total_by_type = await self.dash.get_total_by_type_all_time()   # Item 6 do DAO
         monthly_totals = await self.dash.get_monthly_totals()       # Item 9 do DAO
+        available_years = await self.dash.get_available_years()
         
         return {
             "types_counts": types_counts,
             "latest_pubs": latest_pubs,
             "total_count": total_count,
             "count_by_type_all_time": total_by_type,
-            "monthly_totals": monthly_totals
+            "monthly_totals": monthly_totals,
+            "years": available_years
         } 
 
 class PeriodicController:
