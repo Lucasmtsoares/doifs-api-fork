@@ -21,7 +21,8 @@ class DashboardDAO:
             "Demissão": "total_demissão",
             "Dispensa": "total_dispensa",
             "Designação": "total_designação",
-            "Substituição": "total_substituição"
+            "Substituição": "total_substituição",
+            "Outros": "total_outros"
         }
         self.target_types = list(self.type_mapping.keys())
 
