@@ -1,11 +1,6 @@
-import re
 from dotenv import load_dotenv
 import os
 load_dotenv()
-
-from app.db.connection_db import Connection
-import asyncio
-import unicodedata
 from app.models.publication import Publication
 from motor.motor_asyncio import AsyncIOMotorDatabase, AsyncIOMotorCollection
 
@@ -13,101 +8,98 @@ COLLETION_NAME = os.getenv("COLLETION_NAME")
 
 class PublicationDAO:
     def __init__(self, db: AsyncIOMotorDatabase):
-        self.colletion: AsyncIOMotorCollection = db[COLLETION_NAME]
+        self.collection: AsyncIOMotorCollection = db[COLLETION_NAME]
 
     async def get_publication(self, publication: Publication):
         print("Buscando...")
         
-        match_query = {}
+        filters = {} #tttt
         
         def is_valid_param(param):
             return param is not None and param != ""
         
         if  is_valid_param(publication.type):
-            match_query["type"] = publication.type
+            filters["type"] = publication.type
+            
+        if is_valid_param(publication.acronym):
+            filters["acronym"] = publication.acronym
         
         if is_valid_param(publication.year):
             try:
-                match_query["year"] = int(publication.year)
+                filters["year"] = int(publication.year)
             except (ValueError, TypeError):
                 print(f"Ano inválido fornecido: {publication.year}")
                 
-        if is_valid_param(publication.acronym):
-                match_query["acronym"] = publication.acronym
+        
                 
+        pipeline = []
+        
         if is_valid_param(publication.name):
-                search_pattern_ = await self._normalize_text(publication.name)
-                search_pattern = re.escape(search_pattern_)
-                match_query["content"] = {
-                    "$regex": search_pattern,
-                    "$options": "i"
+            pipeline.append({
+                "$search": {
+                    "index": "default",
+                    "phrase": {
+                    "query": publication.name,
+                    "path": [
+                        "content",
+                        "ordinance",
+                        "responsible",
+                        "organ"
+                    ],
+                    "slop": 2
+}
                 }
-                
-        total_count = await self.colletion.count_documents(match_query)
-        
-        cursor = None
-                
-        if not match_query:
-            print("Nenhum parâmetro de busca fornecido. Retornando os 10 mais recentes.") 
-            cursor = self.colletion.find({}).sort("date", -1).limit(10)
+            })
             
-        else:   
-            pipeline = [
-                
-                {
-                    "$match": match_query
-                },
-                
-                {
-                    "$sort": {"date": -1}
-                },
-                
-                {
-                    "$project": {
-                        "_id": 0,
-                        "acronym": 1,
-                        "institute": 1,
-                        "ordinance": 1,
-                        "type": 1,
-                        "tags": 1,
-                        "date": 1,
-                        "url": 1
-                    }
+        if filters: 
+            pipeline.append({
+                "$match": filters
+            })
+            
+        pipeline.append({
+            "$sort": {
+                "date": -1
+            }
+        })
+        
+        pipeline.append({
+            "$project": {
+                "_id": 0,
+                "acronym": 1,
+                "institute": 1,
+                "ordinance": 1,
+                "type": 1,
+                "tags": 1,
+                "date": 1,
+                "year": 1,
+                "url": 1,
+                "score": {
+                    "$meta": "searchScore"
                 }
-            ]
-            cursor = self.colletion.aggregate(pipeline)
+            }
+        })
         
-        res = await cursor.to_list(None)
         
-        for doc in res:
-            if "_id" in doc:
-                doc["_id"] = str(doc["_id"])
-                
-        if not match_query:
-            total_count = len(res) 
-                
-        return res, total_count
+        if not pipeline or (
+            len(pipeline) == 2 and "$sort" in pipeline[0]
+        ): 
+            print("Nenhum parametro fornecido")
+            cursor = (
+                self.collection
+                .find({})
+                .sort("date", -1)
+                .limit(10)
+            )
+            
+            res = await cursor.to_list(length=None)
+            total_count = len(res)
 
-    async def _normalize_text(self, text: str) -> str:
-        """
-        Normaliza o texto: 
-        1. Converte para minúsculas
-        2. Remove acentos e diacríticos
-        3. Remove espaços extras
-        """
-        if not text:
-            return ""
-        
-        # Converter para minúsculas
-        text = text.lower()
-        
-        # Decompor caracteres acentuados (ex: 'é' vira 'e' + '´')
-        nfkd_form = unicodedata.normalize('NFKD', text)
-        
-        # Filtrar apenas caracteres que não são marcas de acentuação (Mn = Mark, Nonspacing)
-        text_normalized = "".join([char for char in nfkd_form if unicodedata.category(char) != 'Mn'])
-        
-        # Remover espaços em branco extras e quebras de linha
-        text_normalized = " ".join(text_normalized.split())
-        return text_normalized
-            
+        else:
+
+            cursor = self.collection.aggregate(pipeline)
+
+            res = await cursor.to_list(length=None)
+
+            total_count = len(res)
+
+        return res, total_count
