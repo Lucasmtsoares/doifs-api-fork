@@ -31,7 +31,8 @@ class PublicationDAO:
                 print(f"Ano inválido fornecido: {publication.year}")
         
         if is_valid_param(publication.number):
-            filters["number"] = publication.number    
+            number = str(publication.number)
+            filters["number"] = number    
         
                 
         pipeline = []
