@@ -16,7 +16,8 @@ class PublicationController:
             name=params.get("name"),
             type=params.get("type"),
             acronym=params.get("acronym"),
-            year=params.get("year")
+            year=params.get("year"),
+            number=params.get("number")
         )
         
         results, total = await self.dao.get_publication(search_model)
