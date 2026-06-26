@@ -29,7 +29,9 @@ class PublicationDAO:
                 filters["year"] = int(publication.year)
             except (ValueError, TypeError):
                 print(f"Ano inválido fornecido: {publication.year}")
-                
+        
+        if is_valid_param(publication.number):
+            filters["number"] = publication.number    
         
                 
         pipeline = []
