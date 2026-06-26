@@ -108,7 +108,7 @@ class PublicationDAO:
 
         return res, total_count
     
-    def clean_and_convert_number(number) -> str:
+    def clean_and_convert_number(self, number) -> str:
         content = str(number)
         result = re.sub(r'[^\d]', '', content)
         
