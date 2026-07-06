@@ -65,8 +65,8 @@ def get_ctrl(name: str):
 
 # --- ROTAS ---
 
-@app.get("/buscar", response_model=None)
-async def buscar_publicacoes(
+@app.get("/search", response_model=None)
+async def get_publications(
     name: Optional[str] = Query(None),
     type: Optional[str] = Query(None),
     acronym: Optional[str] = Query(None),
@@ -104,18 +104,18 @@ async def get_institutes_overview_data():
     return await get_ctrl('institute_controller').get_institutes_overview_controller()
 
 @app.get("/top-personnel") # Ok ---
-async def get_top_personnel_data():
+async def get_top10_institutes_data():
     """Ranking de responsáveis."""
     return await get_ctrl('personnel_controller').get_top_personnel_controller()
 
 @app.get("/region-totals") # ?
-async def get_region_totals_data():
-    """Dados geográficos (Regiões/Estados)."""
+async def get_regions_totals_data():
+    """Dados geográficos detalhados por regiões."""
     return await get_ctrl('region_controller').get_region_totals_controller()
 
 @app.get("/states-totals") # ?
-async def get_state_totals_data():
-    """Dados geográficos detalhados por estado."""
+async def get_states_totals_data():
+    """Dados geográficos detalhados por estados."""
     return await get_ctrl('state_controller').get_states_totals_controller()
 
 @app.get("/filters")
