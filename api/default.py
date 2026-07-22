@@ -65,7 +65,7 @@ def get_ctrl(name: str):
 
 # --- ROTAS ---
 
-@app.get("/search", response_model=None)
+@app.get("/publications", response_model=None)
 async def get_publications(
     name: Optional[str] = Query(None),
     type: Optional[str] = Query(None),
@@ -88,7 +88,7 @@ async def get_publications(
     ctrl = get_ctrl('publication_controller')
     return await ctrl.get_publication_controller(search_params)
 
-@app.get("/get-totals") # Ok ----
+@app.get("/publications/summary") # Ok ----
 async def get_totals():
     """Resumo: tipos no último mês, últimas pubs e contagem total."""
     return await get_ctrl('summary_controller').get_totals_controller()
@@ -98,27 +98,27 @@ async def get_periodic_types_data():
     """Evolução temporal (90 dias)."""
     return await get_ctrl('periodic_controller').get_periodic_type_controller()
 
-@app.get("/institutes-overview") # Ok ---
+@app.get("/institutes") # Ok ---
 async def get_institutes_overview_data():
     """Visão por institutos e anos."""
     return await get_ctrl('institute_controller').get_institutes_overview_controller()
 
-@app.get("/top-personnel") # Ok ---
+@app.get("/personnel/top") # Ok ---
 async def get_top10_institutes_data():
     """Ranking de responsáveis."""
     return await get_ctrl('personnel_controller').get_top_personnel_controller()
 
-@app.get("/region-totals") # ?
+@app.get("/regions") # ?
 async def get_regions_totals_data():
     """Dados geográficos detalhados por regiões."""
     return await get_ctrl('region_controller').get_region_totals_controller()
 
-@app.get("/states-totals") # ?
+@app.get("/states") # ?
 async def get_states_totals_data():
     """Dados geográficos detalhados por estados."""
     return await get_ctrl('state_controller').get_states_totals_controller()
 
-@app.get("/filters")
+@app.get("/publications/filters")
 async def get_filters_data():
     """Anos disponiveis"""
     return await get_ctrl('filters_controller').get_filters_metadata_controller()
